@@ -1,5 +1,8 @@
-import NavBar from '../../components/NavBar/NavBar';
-import Footer from '../../components/Footer/Footer';
+import { Link } from 'react-router-dom'
+import {HashLink as Hash} from 'react-router-hash-link'
+
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from '../../components/Footer/Footer'
 
 import onion from '../../images/profile-onion.jpg'
 
@@ -9,15 +12,19 @@ const Main = () => {
         <main className="main">
             <section className="front h-screen min-h-full flex flex-col justify-around text-center">
                 <div>
-                    <button>Dibujos</button>
+                    <Link to={"/portfolio"}>
+                        <button>Dibujos</button>
+                    </Link>
                 </div>
                 <h1 className="text-8xl">Tocaya</h1>
                 <div>
-                    <button>Info sobre yo</button>
+                    <Hash smooth to={"/#about-me"}>
+                        <button>Info sobre yo</button>
+                    </Hash>
                 </div>
             </section>
             <NavBar />
-            <section className="about-me h-screen min-h-full">
+            <section className="about-me h-screen min-h-full" id='about-me'>
                 <div className="about-me__flex flex flex-col justify-center">
                     <h2 className="text-6xl p-4 text-center">Sobre mí</h2>
                     <div className="about-me-container flex flex-col justify-center align-middle">

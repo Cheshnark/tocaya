@@ -4,7 +4,7 @@ const Footer = () => {
     const year:Number = (new Date()).getFullYear(); 
 
     return (
-        <footer className="h-full">
+        <footer className="footerh-full" id="contact">
             <hr className="border-1 border-black"/>
             <div className="social">
                 <figure className="social-icons">
