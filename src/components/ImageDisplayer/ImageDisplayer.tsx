@@ -7,7 +7,7 @@ interface Img {
 
 
 const ImageDisplayer = () => {
-    const [mainImage, setMainImage] = useState<string>("123")
+    const [mainImage, setMainImage] = useState<string>("https://images.squarespace-cdn.com/content/v1/51f0dff4e4b07acd2a17347c/1624133571531-0OPNXXCB7Q78RRJUCBWV/Web_Sticker_Sticker-sheet.jpg?format=1000w")
     const images:Img[] = [
         {
             id: "123",
