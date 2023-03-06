@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 
+import Calendar from '../Calendar/Calendar';
+
 const ProductForm = () => {
     const [color, setColor] = useState("#5C9665")
     const [showWarning, setShowWarning] = useState(false)
     const [showFileField, setShowFileField] = useState(false)
+    const [showCalendar, setShowCalendar] = useState(false)
     
     const colorPick = (e:any) => {
         setColor(e.target.value)
@@ -13,6 +16,10 @@ const ProductForm = () => {
                 setShowWarning(false)
             }, 10000)
         }
+    }
+
+    const openCalendar = (e:any) => {
+        setShowCalendar(!showCalendar)
     }
 
     const fileField = () => {
@@ -78,7 +85,16 @@ const ProductForm = () => {
                     name="pet-images" 
                     className="w-10/12 mx-auto" />
             </div>}
-            <label htmlFor="">Comentarios</label>
+            <label
+            onClick={openCalendar}
+            className='bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105' >
+                Fecha de entrega
+                <i className="fa-solid fa-angle-down pl-4" />
+            </label>
+            {showCalendar &&
+                <Calendar />
+            }
+            <label>Comentarios</label>
             <textarea name="comentas" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50"></textarea>
             <button className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pedir perrete!</button>
         </form>
