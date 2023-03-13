@@ -1,3 +1,4 @@
+import { useFetch } from "../../useFetch";
 interface SectionArray {
     name: string;
     images: Array<string>
@@ -23,6 +24,7 @@ const portfolio:Array<SectionArray> = [
 ]
 
 const PortfolioAdmin = () => {
+    const {data, loading, error, handleCancelRequest, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
 
     return (
         <section className="portfolio-admin">

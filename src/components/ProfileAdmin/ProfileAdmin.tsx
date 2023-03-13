@@ -15,25 +15,17 @@ const ProfileAdmin = () => {
         profilePicture: data ? data[0].profilePicture : undefined
     })
 
-    const handleSubmit = async (e:any) => {
-        console.log(e.target.name);
-        
+    const handleSubmit = async (e:any) => {        
         e.preventDefault()
-
-        const id = data[0]._id
-        const profile = {
-            id, 
-            name: tempProfile.name,
-            description: tempProfile.description, 
-            image: tempProfile.profilePicture
-            }        
+        const formData = new FormData();
+        formData.append('id', data[0]._id)
+        formData.append('profilePicture', tempProfile.profilePicture);
+        formData.append('name', tempProfile.name);
+        formData.append('description', tempProfile.description);     
 
         const response = await fetch('http://localhost:8000/profile', {
             method: 'PATCH',
-            body: JSON.stringify(profile),
-            headers: {
-                'Content-type': 'application/json'
-            }
+            body: formData,
         })
 
         const json = await response.json()
@@ -78,7 +70,6 @@ const ProfileAdmin = () => {
                                         setTempProfile({
                                             ...tempProfile,
                                             profilePicture: e.target.files[0]})}} />
-                                <i className="fa-solid fa-cloud-arrow-up hover:cursor-pointer"/>
                                 <i className="fa-solid fa-xmark hover:cursor-pointer" onClick={() => setShowImage(true)}/>
                             </div>
                         )}  
@@ -107,7 +98,6 @@ const ProfileAdmin = () => {
                                         setTempProfile({
                                             ...tempProfile,
                                             name: e.target.value})}}/>
-                                <i className="fa-solid fa-cloud-arrow-up hover:cursor-pointer" />
                                 <i 
                                 className="fa-solid fa-xmark hover:cursor-pointer" 
                                 onClick={() => {
@@ -140,7 +130,6 @@ const ProfileAdmin = () => {
                                         setTempProfile({
                                             ...tempProfile,
                                             description: e.target.value})}} />
-                                <i className="fa-solid fa-cloud-arrow-up hover:cursor-pointer" />
                                 <i 
                                 className="fa-solid fa-xmark hover:cursor-pointer" 
                                 onClick={() => {
