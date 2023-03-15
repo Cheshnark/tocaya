@@ -101,7 +101,6 @@ const ProfileAdmin = () => {
                                 <i 
                                 className="fa-solid fa-xmark hover:cursor-pointer" 
                                 onClick={() => {
-
                                     setShowName(true)}}/>
                             </div>
                         )}                        

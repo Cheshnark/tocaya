@@ -1,10 +1,7 @@
-import { useFetch } from "../../useFetch";
-interface SectionArray {
-    name: string;
-    images: Array<string>
-  }
+import { useState } from 'react'
+import { useFetch } from "../../useFetch"
 
-const portfolio:Array<SectionArray> = [
+const portfolio:Array<Section> = [
     {
         name: "Gargantua",
         images: [
@@ -24,32 +21,83 @@ const portfolio:Array<SectionArray> = [
 ]
 
 const PortfolioAdmin = () => {
-    const {data, loading, error, handleCancelRequest, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
+    const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/portfolio") 
+    const [showName, setShowName] = useState(true)
+    const [showNameInput, setShowNameInput] = useState(false)
+    const [tempSectionName, setTempSectionName] = useState("")
+    // const [tempPorfolioImage, setTempPortfolioImage] = useState({portfolioImage: data ? data[0].profilePicture : undefined})
+
+    const createSection = async (e:any) => {
+        e.preventDefault()
+        
+        const name = tempSectionName
+        const data = {name:name}
+        console.log(JSON.stringify(data));
+        
+
+        const response = await fetch('http://localhost:8000/portfolio/section', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            console.log(json.error)
+        }else if(response.ok){
+            setShowNameInput(false)
+            setHasChanged(!hasChanged)
+            setTempSectionName("")
+            console.log('Profile updated correctly', json.profile)
+        }
+    }
 
     return (
         <section className="portfolio-admin">
             <div className="portfolio-admin__title bg-cyan-500 p-4">
                 <h2 className="text-3xl">Portfolio</h2>
             </div>
-            <form action="submit" className="p-4">
-                {portfolio.map(section => {
+            {loading && <div>Loading...</div> }
+            {error && <div>Error:{error}</div> }
+            {data && 
+            <form action="submit" className="p-4 flex flex-col justify-center">
+                {data.map(section => {
                     return (
                         <div className="portfolio-admin-section">
-                            <div className="portfolio-admin-section__name flex justify-start py-4">
-                                <h3 className="text-2xl mx-4">{section.name}</h3>
-                                <div className="product-name__items flex justify-around items-center gap-2">
-                                    <i className="fa-solid fa-pen" />
-                                    <i className="fa-solid fa-trash-can" />
+                            {showName ? (
+                                <div className="portfolio-admin-section__name flex justify-center py-4">
+                                    <h3 className="text-2xl mx-4">{section.name}</h3>
+                                    <div className="product-name__items flex justify-around items-center gap-2">
+                                        <i className="fa-solid fa-pen hover:cursor-pointer" onClick={() => setShowName(false)}/>
+                                        <i className="fa-solid fa-trash-can hover:cursor-pointer" />
                                 </div>
                             </div>
+                            ):(
+                                <div className="portfolio-admin-section__name flex justify-center py-4">
+                                    <input 
+                                    type="text" 
+                                    name='name' 
+                                    // value={tempProfile.name} 
+                                    className='w-6/12 mr-2' 
+                                    // onChange={(e) => {
+                                    //     setTempProfile({
+                                    //         ...tempProfile,
+                                    //         name: e.target.value})}}
+                                    />
+                                    <div className="product-name__items flex justify-around items-center gap-2">
+                                        <i className="fa-solid fa-xmark hover:cursor-pointer" onClick={() => setShowName(true)}/>
+                                        <i className="fa-solid fa-arrow-up-from-bracket hover:cursor-pointer" />
+                                    </div>
+                                </div>
+                            )}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8 bg-zinc-200"> 
                                 {section.images.map(image => {
                                     return (
                                     <div className="portfolio-admin-section-container flex justify-center gap-4">
                                         <img src={image} alt="portfolio image" className="max-w-sm"/>
                                         <div className="product-name__items flex justify-around items-center gap-2">
-                                            <i className="fa-solid fa-pen" />
-                                            <i className="fa-solid fa-trash-can" />
+                                            <i className="fa-solid fa-trash-can hover:cursor-pointer" />
                                         </div>
                                     </div>
                                     )
@@ -57,12 +105,42 @@ const PortfolioAdmin = () => {
                             </div>
                         </div>
                     )
-                    
                 })}
+                <button 
+                    className='bg-cyan-500 w-6/12 mx-auto mt-4 min-w-min p-2 rounded-md'
+                    type="button"
+                    onClick={ () => setShowNameInput(true)}>
+                    <i className="fa-solid fa-plus mr-4" />
+                    Añadir sección
+                </button>
             </form>
-            <div className="add relative top-0">
-                <i className="fa-solid fa-plus mr-4" />
-            </div>
+            }
+            {showNameInput &&
+                <div className="section-name-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
+                    <div className="section-name-input-content flex flex-col">
+                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Da nombre a la nueva sección</h3>
+                        <div className="input-content__form flex justify-center items-center gap-4">
+                            <input 
+                                type="text" 
+                                name='name' 
+                                value={tempSectionName} 
+                                className='w-6/12 outline-none p-2 rounded-md' 
+                                onChange={(e) => {
+                                    setTempSectionName(e.target.value)
+                                }}
+                                />
+                            <i 
+                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
+                            onClick={() => {
+                                setShowNameInput(false)
+                                setTempSectionName("")}}/>
+                            <i 
+                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
+                                onClick={createSection} />
+                        </div>
+                    </div>
+                </div>
+            }
         </section>
     )
 }

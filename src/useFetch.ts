@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react"
 
+interface Section {
+  name: string;
+  images: Array<string>
+}
+
 export function useFetch(url:string) {
-  const [data, setData] = useState<Request | null >()
+  const [data, setData] = useState< null | Array<Section>>()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [controller, setController] = useState<AbortController | null>(null)
