@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 
 interface Section {
+  _id: string;
   name: string;
   images: Array<string>
 }
