@@ -141,7 +141,7 @@ const ProfileAdmin = () => {
                         type='submit'
                         onClick={ () => setChanged(!changed)}> 
                             Actualizar 
-                        </button>
+                    </button>
                 </form>
                 }
             </div>
