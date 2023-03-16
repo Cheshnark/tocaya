@@ -100,6 +100,28 @@ const PortfolioAdmin = () => {
         }   
     }
 
+    const updateSectionName = async () => {
+        const data = {name: tempSectionName, id:tempId}
+        console.log(data);
+        
+
+        const response = await fetch('http://localhost:8000/portfolio/section/', {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            console.log(json.error)
+        }else if(response.ok){
+            setHasChanged(!hasChanged)
+            setShowName(true)
+            console.log('Section name updated correctly', json.profile)
+        }   
+    }
+
     return (
         <section className="portfolio-admin">
             <div className="portfolio-admin__title bg-cyan-500 p-4">
@@ -116,7 +138,12 @@ const PortfolioAdmin = () => {
                                 <div className="portfolio-admin-section__name flex justify-center py-4">
                                     <h3 className="text-2xl mx-4">{section.name}</h3>
                                     <div className="product-name__items flex justify-around items-center gap-2">
-                                        <i className="fa-solid fa-pen hover:cursor-pointer" onClick={() => setShowName(false)}/>
+                                        <i 
+                                            className="fa-solid fa-pen hover:cursor-pointer" 
+                                            onClick={() => {
+                                                setTempSectionName(section.name)
+                                                setTempId(section._id)
+                                                setShowName(false)}}/>
                                         <i className="fa-solid fa-trash-can hover:cursor-pointer" onClick={() => deleteSection(section)} />
                                 </div>
                             </div>
@@ -125,16 +152,17 @@ const PortfolioAdmin = () => {
                                     <input 
                                     type="text" 
                                     name='name' 
-                                    // value={tempProfile.name} 
+                                    value={tempSectionName} 
+                                    autoComplete="off"
                                     className='w-6/12 mr-2' 
-                                    // onChange={(e) => {
-                                    //     setTempProfile({
-                                    //         ...tempProfile,
-                                    //         name: e.target.value})}}
+                                    onChange={e => setTempSectionName(e.target.value)}
                                     />
                                     <div className="product-name__items flex justify-around items-center gap-2">
-                                        <i className="fa-solid fa-xmark hover:cursor-pointer" onClick={() => setShowName(true)}/>
-                                        <i className="fa-solid fa-arrow-up-from-bracket hover:cursor-pointer" />
+                                        <i 
+                                            className="fa-solid fa-xmark hover:cursor-pointer" onClick={() => setShowName(true)}/>
+                                        <i 
+                                            className="fa-solid fa-arrow-up-from-bracket hover:cursor-pointer" 
+                                            onClick={updateSectionName}/>
                                     </div>
                                 </div>
                             )}
