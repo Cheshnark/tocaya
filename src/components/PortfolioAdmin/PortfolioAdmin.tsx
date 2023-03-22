@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useFetch } from "../../useFetch"
 
+import PortfolioNameInput from '../PortfolioNameInput/PortfolioNameInput'
+import PortfolioImageInput from '../PortfolioImageInput/PortfolioImageInput'
+
 interface PortfolioSection {
     _id:string
     name:string,
@@ -16,7 +19,7 @@ const PortfolioAdmin = () => {
     const [tempPicture, setTempPicture] = useState()
     const [tempId, setTempId] = useState("")
 
-    const createSection = async (e:any) => {
+    const createSection = async (e: React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault()
         
         const data = {name:tempSectionName}
@@ -200,64 +203,27 @@ const PortfolioAdmin = () => {
                 <button 
                     className='bg-cyan-500 w-6/12 mx-auto mt-4 min-w-min p-2 rounded-md'
                     type="button"
-                    onClick={ () => setShowNameInput(true)}>
+                    onClick={ () => {
+                        setTempSectionName("")
+                        setShowNameInput(true)}}>
                     <i className="fa-solid fa-plus mr-4" />
                     Añadir sección
                 </button>
             </form>
             }
             {showNameInput &&
-                <div className="section-name-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
-                    <div className="section-name-input-content flex flex-col">
-                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Da nombre a la nueva sección</h3>
-                        <div className="input-content__form flex justify-center items-center gap-4">
-                            <input 
-                                type="text" 
-                                name='name' 
-                                value={tempSectionName} 
-                                autoComplete="off"
-                                className='w-6/12 outline-none p-2 rounded-md' 
-                                onChange={(e) => {
-                                    setTempSectionName(e.target.value)
-                                }}
-                                />
-                            <i 
-                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
-                            onClick={() => {
-                                setShowNameInput(false)
-                                setTempSectionName("")}}/>
-                            <i 
-                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
-                                onClick={createSection} />
-                        </div>
-                    </div>
-                </div>
+                <PortfolioNameInput 
+                    tempSectionName={tempSectionName}
+                    setTempSectionName={setTempSectionName}
+                    setShowNameInput={setShowNameInput}
+                    createSection={createSection}/>
             }
             {showImageInput &&
-                <div className="section-name-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
-                    <div className="section-name-input-content flex flex-col">
-                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Elige una imagen que subir</h3>
-                        <div className="input-content__form flex justify-center items-center gap-4">
-                            <input 
-                                type="file" 
-                                name='portfolioImage' 
-                                autoComplete="off"
-                                className='w-6/12 outline-none p-2 rounded-md bg-white' 
-                                onChange={(e:any) => {
-                                    setTempPicture(e.target.files[0])
-                                }}
-                                />
-                            <i 
-                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
-                            onClick={() => {
-                                setShowImageInput(false)
-                                }}/>
-                            <i 
-                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
-                                onClick={() => addPicture(tempId)} />
-                        </div>
-                    </div>
-                </div>
+                <PortfolioImageInput
+                setTempPicture={setTempPicture}
+                setShowImageInput={setShowImageInput}
+                addPicture={addPicture}
+                tempId={tempId} />
             }
         </section>
     )
