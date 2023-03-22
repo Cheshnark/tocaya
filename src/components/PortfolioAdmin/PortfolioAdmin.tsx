@@ -172,7 +172,7 @@ const PortfolioAdmin = () => {
                                     return (
                                     <div className="portfolio-admin-section-container flex justify-center gap-4">
                                         <img 
-                                            src={`http://localhost:8000/images/${image.filename}`} 
+                                            src={`http://localhost:8000/images/portfolio/${image.filename}`} 
                                             alt="portfolio image" 
                                             className="max-w-sm w-11/12"/>
                                         <div className="portfolio-name__items flex justify-around items-center gap-2">

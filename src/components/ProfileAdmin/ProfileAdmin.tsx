@@ -14,6 +14,7 @@ const ProfileAdmin = () => {
         description: data ? data[0].description : "",
         profilePicture: data ? data[0].profilePicture : undefined
     })
+    const [oldFile, setOldFile] = useState("")
 
     const handleSubmit = async (e:any) => {        
         e.preventDefault()
@@ -21,7 +22,8 @@ const ProfileAdmin = () => {
         formData.append('id', data[0]._id)
         formData.append('profilePicture', tempProfile.profilePicture);
         formData.append('name', tempProfile.name);
-        formData.append('description', tempProfile.description);     
+        formData.append('description', tempProfile.description);
+        formData.append('oldFileName', oldFile)
 
         const response = await fetch('http://localhost:8000/profile', {
             method: 'PATCH',
@@ -57,7 +59,11 @@ const ProfileAdmin = () => {
                                     src={`http://localhost:8000/images/${data[0].profilePicture.filename}`} 
                                     alt="profile picture"
                                     className='max-h-40 rounded-full' />
-                                <i className="fa-solid fa-pen hover:cursor-pointer" onClick={() => setShowImage(false)}/>
+                                <i 
+                                    className="fa-solid fa-pen hover:cursor-pointer" 
+                                    onClick={() => {
+                                        setOldFile(data[0].profilePicture.filename)
+                                        setShowImage(false)}}/>
                             </div>
                         ):(
                             <div className='flex gap-4 items-center'>
