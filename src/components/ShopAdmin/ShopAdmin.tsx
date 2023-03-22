@@ -1,35 +1,13 @@
 import { useState } from 'react';
 import { useFetch } from '../../useFetch';
-interface Product {
-    name: string,
-    description: string,
-    size: Array<string>,
-    backgroundColor: Array<string>
-}
-
-
-const products:Array<Product> = [
-    {
-        name: "Perrete",
-        description: "Perros dibujados muy dibujados con cosas",
-        size: [
-            "15x15",
-            "20x20",
-            "60x60"
-        ],
-        backgroundColor: [
-            "#83a3ee",
-            "#ef1a11",
-            "#80bd76"
-        ]
-    }
-]
 
 const ShopAdmin = () => {
     const {data, loading, error, handleCancelRequest, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
     
     const [showNameInput, setShowNameInput] = useState(false)
     const [showImageInput, setShowImageInput] = useState(false)
+    const [showSizeInput, setShowSizeInput] = useState(false)
+    const [showBackgroundInput, setShowBackgroundInput] = useState(false)
     const [showProductName, setShowProductName] = useState(true)
     const [showDescription, setShowDescription] = useState(true)
     const [showInnerTitle, setShowInnerTitle] = useState(true)
@@ -41,6 +19,9 @@ const ShopAdmin = () => {
     const [tempInnerTitle, setTempInnerTitle] = useState("")
     const [tempProductDescription, setTempProductDescription] = useState("")
     const [tempInnerDescription, setTempInnerDescription] = useState("")
+    const [tempSize, setTempSize] = useState("")
+    const [tempBackgroundName, setTempBackgroundName] = useState("")
+    const [tempBackground, setTempBackground] = useState("")
 
 
 
@@ -173,6 +154,72 @@ const ShopAdmin = () => {
             }
             console.log('Product created correctly', json.profile)
         }
+    }
+
+    const addItem = async (sectionId:string, section:string) => {
+        let data = {}
+
+        if(section === "size") {
+            data = {
+                _id:sectionId,
+                size:tempSize
+            }
+        }else if(section === "background") {
+            data = {
+                _id:sectionId,
+                backgroundColor: {
+                    name: tempBackgroundName,
+                    hex: tempBackground
+                }
+            }
+        }
+
+        const response = await fetch('http://localhost:8000/shop/product', {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            console.log(json.error)
+        }else if(response.ok){
+            setHasChanged(!hasChanged)
+            if(section === "size") {
+                setTempSize("")
+                setShowSizeInput(false)
+            }else if(section === "background") {
+                setTempBackgroundName("")
+                setTempBackground("")
+                setShowBackgroundInput(false)
+            }
+            console.log('Product created correctly', json.profile)
+        }
+    }
+
+    const deleteItem = async (itemName:string, section:string) => {
+        let data = {}
+        if(section === "size"){
+            data = {name: itemName, id:tempId, sectionName:section}
+        }else if(section === "background") {
+            data = {name: itemName, id:tempId,sectionName:section}
+        }
+
+        const response = await fetch('http://localhost:8000/shop/product/item', {
+            method: 'DELETE',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            console.log(json.error)
+        }else if(response.ok){
+            setHasChanged(!hasChanged)
+            console.log('Image deleted correctly', json.profile)
+        }   
     }
 
     return (
@@ -316,7 +363,8 @@ const ShopAdmin = () => {
                                 )}
                                 <div className="product-images flex flex-col justify-center gap-2 mb-4 p-2 ">
                                     <h3 className='text-center text-2xl'>Imagenes</h3>
-                                    {product.images.map(image => {
+                                    {product.images.length > 0 &&
+                                    product.images.map(image => {
                                         return (
                                             <div className="product-image flex items-center gap-2 w-11/12 max-w-sm">
                                                 <img 
@@ -348,26 +396,49 @@ const ShopAdmin = () => {
                                                 <div className="produc-size__object flex justify-between gap-4">
                                                     <p className="ml-4">{s}</p>
                                                     <div className="produc-size__object-items">
-                                                        <i className="fa-solid fa-plus mr-4" />
-                                                        <i className="fa-solid fa-trash-can" />
+                                                        <i 
+                                                            className="fa-solid fa-trash-can"
+                                                            onClick={() => {
+                                                                setTempId(product._id)
+                                                                deleteItem(s, "size")}} />
                                                     </div>
                                                 </div>
                                             )
                                         })}
+                                        <button 
+                                            className='bg-cyan-500 w-12 h-12 mx-auto mt-4 mb-2 min-w-min p-2 rounded-full'
+                                            type="button"
+                                            onClick={ () => {
+                                                setTempId(product._id)                                            
+                                                setShowSizeInput(true)}}>
+                                            <i className="fa-solid fa-plus mx-auto w-11/12" />
+                                        </button>
                                     </div>
                                     <div className="product-background w-60 flex flex-col">
                                         <h4 className="text-center mb-4">Color de fondo</h4>
                                         {product.backgroundColor.map(background=> {
                                             return(
                                                 <div className="product-background__object flex justify-between">
-                                                    <p className="ml-4">{background}</p>
+                                                    <p className="ml-4">{background.name}</p>
+                                                    <p className="ml-4">{background.hex}</p>
                                                     <div className="produc-background__object-items">
-                                                        <i className="fa-solid fa-plus mr-4" />
-                                                        <i className="fa-solid fa-trash-can" />
+                                                        <i 
+                                                            className="fa-solid fa-trash-can"
+                                                            onClick={() => { 
+                                                                setTempId(product._id)
+                                                                deleteItem(background.name, "background")}}/>
                                                     </div>
                                                 </div>
                                             )
                                         })}
+                                        <button 
+                                            className='bg-cyan-500 w-12 h-12 mx-auto mt-4 mb-2 min-w-min p-2 rounded-full'
+                                            type="button"
+                                            onClick={ () => {
+                                                setTempId(product._id)                                            
+                                                setShowBackgroundInput(true)}}>
+                                            <i className="fa-solid fa-plus mx-auto w-11/12" />
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -430,6 +501,74 @@ const ShopAdmin = () => {
                             <i 
                                 className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
                                 onClick={() => addProductPicture(tempId)} />
+                        </div>
+                    </div>
+                </div>
+            }
+            {showSizeInput &&
+                <div className="size-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
+                    <div className="size-input-content flex flex-col">
+                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Introduce las nuevas medidas</h3>
+                        <div className="input-content__form flex justify-center items-center gap-4">
+                            <input 
+                                type="text" 
+                                name='size' 
+                                value={tempSize} 
+                                autoComplete="off"
+                                className='w-6/12 outline-none p-2 rounded-md' 
+                                onChange={(e) => {
+                                    setTempSize(e.target.value)
+                                }}
+                                />
+                            <i 
+                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
+                            onClick={() => {
+                                setShowSizeInput(false)
+                                setTempSize("")}}/>
+                            <i 
+                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
+                                onClick={() => addItem(tempId, "size")} />
+                        </div>
+                    </div>
+                </div>
+            }
+            {showBackgroundInput &&
+                <div className="background-color-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
+                    <div className="background-color-input-content flex flex-col">
+                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Introduce un nuevo color</h3>
+                        <div className="input-content__form flex justify-center items-center gap-4">
+                            <div className="input-content__form-inputs flex flex-col gap-2 items-end">
+                                <input 
+                                    type="text" 
+                                    name='backgroundColorName' 
+                                    value={tempBackgroundName} 
+                                    autoComplete="off"
+                                    placeholder='Nombre'
+                                    className='w-10/12 outline-none p-2 rounded-md' 
+                                    onChange={(e) => {
+                                        setTempBackgroundName(e.target.value)
+                                    }}/>
+                                <input 
+                                    type="text" 
+                                    name='backgroundColorHex' 
+                                    value={tempBackground} 
+                                    autoComplete="off"
+                                    placeholder='Código hex'
+                                    className='w-10/12 outline-none p-2 rounded-md' 
+                                    onChange={(e) => {
+                                        setTempBackground(e.target.value)
+                                    }}/>
+
+                            </div>
+                            <i 
+                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
+                            onClick={() => {
+                                setShowBackgroundInput(false)
+                                setTempBackgroundName("")
+                                setTempBackground("")}}/>
+                            <i 
+                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
+                                onClick={ () => addItem(tempId, "background")} />
                         </div>
                     </div>
                 </div>

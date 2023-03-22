@@ -108,7 +108,7 @@ const ProfileAdmin = () => {
                     <div className="profile-about flex flex-wrap gap-2 justify-center sm:justify-start">
                         <label className='font-semibold'>Sobre mí: </label>
                         {showDescription ? (
-                            <div className='flex gap-4 max-w-xl'>
+                            <div className='flex items-center gap-4 max-w-xl'>
                                 <p className='text-justify'>{data[0].description}</p>
                                 <i 
                                     className="fa-solid fa-pen hover:cursor-pointer" 

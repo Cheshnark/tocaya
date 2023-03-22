@@ -137,7 +137,7 @@ const PortfolioAdmin = () => {
                             {showName ? (
                                 <div className="portfolio-admin-section__name flex justify-center py-4">
                                     <h3 className="text-2xl mx-4">{section.name}</h3>
-                                    <div className="product-name__items flex justify-around items-center gap-2">
+                                    <div className="portfolio-name__items flex justify-around items-center gap-2">
                                         <i 
                                             className="fa-solid fa-pen hover:cursor-pointer" 
                                             onClick={() => {
@@ -157,7 +157,7 @@ const PortfolioAdmin = () => {
                                     className='w-6/12 mr-2' 
                                     onChange={e => setTempSectionName(e.target.value)}
                                     />
-                                    <div className="product-name__items flex justify-around items-center gap-2">
+                                    <div className="portfolio-name__items flex justify-around items-center gap-2">
                                         <i 
                                             className="fa-solid fa-xmark hover:cursor-pointer" onClick={() => setShowName(true)}/>
                                         <i 
@@ -167,14 +167,15 @@ const PortfolioAdmin = () => {
                                 </div>
                             )}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8 bg-zinc-200"> 
-                                {section.images.map(image => {
+                                {section.images.length > 0 &&
+                                section.images.map(image => {
                                     return (
                                     <div className="portfolio-admin-section-container flex justify-center gap-4">
                                         <img 
                                             src={`http://localhost:8000/images/${image.filename}`} 
                                             alt="portfolio image" 
                                             className="max-w-sm w-11/12"/>
-                                        <div className="product-name__items flex justify-around items-center gap-2">
+                                        <div className="portfolio-name__items flex justify-around items-center gap-2">
                                             <i 
                                                 className="fa-solid fa-trash-can hover:cursor-pointer" 
                                                 onClick={ () => {
@@ -240,7 +241,6 @@ const PortfolioAdmin = () => {
                             <input 
                                 type="file" 
                                 name='portfolioImage' 
-                                // value={tempSectionName} 
                                 autoComplete="off"
                                 className='w-6/12 outline-none p-2 rounded-md bg-white' 
                                 onChange={(e:any) => {
