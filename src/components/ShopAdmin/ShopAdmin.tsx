@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useFetch } from '../../useFetch';
 
+import ShopNameInput from '../ShopNameInput/ShopNameInput';
+import ShopImageInput from '../ShopImageInput/ShopImageInput';
+import ShopSizeInput from '../ShopSizeInput/ShopSizeInput';
+import ShopBackgroundInput from '../ShopBackgroundInput/ShopBackgroundInput';
+
 const ShopAdmin = () => {
     const {data, loading, error, handleCancelRequest, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
     
@@ -22,9 +27,6 @@ const ShopAdmin = () => {
     const [tempSize, setTempSize] = useState("")
     const [tempBackgroundName, setTempBackgroundName] = useState("")
     const [tempBackground, setTempBackground] = useState("")
-
-
-
 
     const createProduct = async () => {
         const data = {productTitle:tempProductName}
@@ -236,6 +238,7 @@ const ShopAdmin = () => {
                             <div className="shop-admin__product bg-zinc-200 p-4 mb-4 flex flex-col justify-center">
                                 {showProductName ? (
                                     <div className="product-title flex justify-start mb-4">
+                                        <label>Product title</label>
                                         <h3 className="text-2xl mx-4">{product.productTitle}</h3>
                                         <div className="product-name__items flex justify-around items-center gap-2">
                                             <i 
@@ -300,6 +303,7 @@ const ShopAdmin = () => {
                                 )}
                                 {showInnerTitle ? (
                                     <div className="product-inner-title flex justify-start mb-4">
+                                        <label>Product inner title</label>
                                         <h3 className="text-2xl mx-4">{product.productInnerTitle}</h3>
                                         <div className="product-inner-title__items flex justify-around items-center gap-2">
                                             <i 
@@ -453,125 +457,36 @@ const ShopAdmin = () => {
                 </button>
             </form>
             {showNameInput &&
-                <div className="section-name-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
-                    <div className="section-name-input-content flex flex-col">
-                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Da nombre al nuevo producto</h3>
-                        <div className="input-content__form flex justify-center items-center gap-4">
-                            <input 
-                                type="text" 
-                                name='name' 
-                                value={tempProductName} 
-                                autoComplete="off"
-                                className='w-6/12 outline-none p-2 rounded-md' 
-                                onChange={(e) => {
-                                    setTempProductName(e.target.value)
-                                }}
-                                />
-                            <i 
-                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
-                            onClick={() => {
-                                setShowNameInput(false)
-                                setTempProductName("")}}/>
-                            <i 
-                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
-                                onClick={createProduct} />
-                        </div>
-                    </div>
-                </div>
+                <ShopNameInput 
+                    tempProductName={tempProductName}
+                    setTempProductName={setTempProductName}
+                    setShowNameInput={setShowNameInput}
+                    createProduct={createProduct} />
             }
             {showImageInput &&
-                <div className="section-name-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
-                    <div className="section-name-input-content flex flex-col">
-                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Elige una imagen que subir</h3>
-                        <div className="input-content__form flex justify-center items-center gap-4">
-                            <input 
-                                type="file" 
-                                name='productPicture' 
-                                autoComplete="off"
-                                className='w-6/12 outline-none p-2 rounded-md bg-white' 
-                                onChange={(e:any) => {
-                                    setTempPicture(e.target.files[0])
-                                }}
-                                />
-                            <i 
-                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
-                            onClick={() => {
-                                setShowImageInput(false)
-                                }}/>
-                            <i 
-                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
-                                onClick={() => addProductPicture(tempId)} />
-                        </div>
-                    </div>
-                </div>
+                <ShopImageInput 
+                    setTempPicture={setTempPicture}
+                    setShowImageInput={setShowImageInput}
+                    addProductPicture={addProductPicture}
+                    tempId={tempId} />
             }
             {showSizeInput &&
-                <div className="size-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
-                    <div className="size-input-content flex flex-col">
-                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Introduce las nuevas medidas</h3>
-                        <div className="input-content__form flex justify-center items-center gap-4">
-                            <input 
-                                type="text" 
-                                name='size' 
-                                value={tempSize} 
-                                autoComplete="off"
-                                className='w-6/12 outline-none p-2 rounded-md' 
-                                onChange={(e) => {
-                                    setTempSize(e.target.value)
-                                }}
-                                />
-                            <i 
-                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
-                            onClick={() => {
-                                setShowSizeInput(false)
-                                setTempSize("")}}/>
-                            <i 
-                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
-                                onClick={() => addItem(tempId, "size")} />
-                        </div>
-                    </div>
-                </div>
+                <ShopSizeInput 
+                    tempSize={tempSize}
+                    setTempSize={setTempSize}
+                    setShowSizeInput={setShowSizeInput}
+                    addItem={addItem}
+                    tempId={tempId} />
             }
             {showBackgroundInput &&
-                <div className="background-color-input-container flex flex-col justify-center h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/95">
-                    <div className="background-color-input-content flex flex-col">
-                        <h3 className='text-white text-center text-2xl font-bold mb-4'>Introduce un nuevo color</h3>
-                        <div className="input-content__form flex justify-center items-center gap-4">
-                            <div className="input-content__form-inputs flex flex-col gap-2 items-end">
-                                <input 
-                                    type="text" 
-                                    name='backgroundColorName' 
-                                    value={tempBackgroundName} 
-                                    autoComplete="off"
-                                    placeholder='Nombre'
-                                    className='w-10/12 outline-none p-2 rounded-md' 
-                                    onChange={(e) => {
-                                        setTempBackgroundName(e.target.value)
-                                    }}/>
-                                <input 
-                                    type="text" 
-                                    name='backgroundColorHex' 
-                                    value={tempBackground} 
-                                    autoComplete="off"
-                                    placeholder='Código hex'
-                                    className='w-10/12 outline-none p-2 rounded-md' 
-                                    onChange={(e) => {
-                                        setTempBackground(e.target.value)
-                                    }}/>
-
-                            </div>
-                            <i 
-                            className="fa-solid fa-xmark text-white hover:cursor-pointer" 
-                            onClick={() => {
-                                setShowBackgroundInput(false)
-                                setTempBackgroundName("")
-                                setTempBackground("")}}/>
-                            <i 
-                                className="fa-solid fa-arrow-up-from-bracket text-white hover:cursor-pointer"
-                                onClick={ () => addItem(tempId, "background")} />
-                        </div>
-                    </div>
-                </div>
+                <ShopBackgroundInput 
+                    tempBackgroundName={tempBackgroundName}
+                    setTempBackgroundName={setTempBackgroundName}
+                    tempBackground={tempBackground}
+                    setTempBackground={setTempBackground}
+                    setShowBackgroundInput={setShowBackgroundInput}
+                    addItem={addItem}
+                    tempId={tempId} />
             }
         </section>
     )
