@@ -2,8 +2,19 @@ import { useState, useEffect } from "react"
 
 interface Section {
   _id: string;
-  name: string;
-  images: Array<string>
+  name?: string;
+  images?: Array<string>;
+  description?: string;
+  profilePicture: {
+    destination: string;
+    encoding: string;
+    fieldname: string;
+    filename: string;
+    mimetype: string;
+    originalname: string;
+    path: string;
+    size: number
+  }
 }
 
 export function useFetch(url:string) {
