@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../hooks/useFetch';
 
 import ShopNameInput from '../ShopNameInput/ShopNameInput';
 import ShopImageInput from '../ShopImageInput/ShopImageInput';
@@ -7,7 +7,7 @@ import ShopSizeInput from '../ShopSizeInput/ShopSizeInput';
 import ShopBackgroundInput from '../ShopBackgroundInput/ShopBackgroundInput';
 
 const ShopAdmin = () => {
-    const {data, loading, error, handleCancelRequest, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
+    const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
     
     const [showNameInput, setShowNameInput] = useState(false)
     const [showImageInput, setShowImageInput] = useState(false)

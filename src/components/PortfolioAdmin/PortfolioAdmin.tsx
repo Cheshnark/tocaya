@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useFetch } from "../../useFetch"
+import { useFetch } from "../../hooks/useFetch"
 
 import PortfolioNameInput from '../PortfolioNameInput/PortfolioNameInput'
 import PortfolioImageInput from '../PortfolioImageInput/PortfolioImageInput'

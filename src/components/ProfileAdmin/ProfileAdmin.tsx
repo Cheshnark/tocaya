@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../hooks/useFetch';
 
 const ProfileAdmin = () => {
     const [showImage, setShowImage] = useState(true)
@@ -7,7 +7,7 @@ const ProfileAdmin = () => {
     const [showDescription, setShowDescription] = useState(true)
     const [changed, setChanged] = useState(false)
 
-    const {data, loading, error, handleCancelRequest, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
+    const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
 
     const [tempProfile, setTempProfile] = useState({
         name: data ? data[0].name : "",
@@ -49,6 +49,7 @@ const ProfileAdmin = () => {
                 <h2 className="text-3xl">Perfil</h2>
             </div>
             <div className="profile-admin-container p-4">
+                {error && <div>Error: {error}</div> }
                 {loading && <div>Loading...</div> }
                 {data && 
                 <form onSubmit={handleSubmit} className="bg-zinc-200 mb-4 p-4 flex flex-col gap-2">
