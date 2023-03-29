@@ -33,9 +33,6 @@ const ProductForm = ({product}:Props) => {
     const [showWarning, setShowWarning] = useState(false)
     const [showFileField, setShowFileField] = useState(false)
     const [showCalendar, setShowCalendar] = useState(false)
-
-    console.log(product);
-    
     
     const colorPick = (e:any) => {
         setColor(e.target.value)
@@ -64,15 +61,15 @@ const ProductForm = ({product}:Props) => {
             <label htmlFor="">Tamaño</label>
             <select name="tamaño" id="" className="w-6/12 mx-auto">
                 {product.size.length > 0 &&
-                    product.size.map(size => {
-                        return <option value={size}>{size}</option>
+                    product.size.map((size, i) => {
+                        return <option value={size} key={Math.random() + i}>{size}</option>
                 })}
             </select>
             <label htmlFor="color">Color del fondo</label>
             <select name="color" id="" className="w-6/12 mx-auto" style={{backgroundColor:`${color}`}} onChange={colorPick}>
                 {product.backgroundColor.length > 0 &&
-                    product.backgroundColor.map(bgColor => {
-                        return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} >{bgColor.name}</option>
+                    product.backgroundColor.map((bgColor, i) => {
+                        return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} key={Math.random() + i} >{bgColor.name}</option>
                 })}
             </select>
             {showWarning &&

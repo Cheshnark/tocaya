@@ -11,9 +11,6 @@ import kofiLogo from '../../images/kofilogo.png'
 const Main = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/profile")
 
-    console.log(data);
-    
-
     return (
         <>
         <div className="desktop-navbar hidden md:block">

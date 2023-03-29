@@ -19,7 +19,7 @@ const Shop = () => {
                 {data && 
                     data.map(product => {
                         return (
-                        <div className="shop-container">
+                        <div className="shop-container" key={product._id}>
                             <ImageDisplayer images={product.images}/>
                             <div className="perretes-content w-10/12 mx-auto flex flex-col justify-around">
                                 <h3 className='mt-4 text-4xl text-center'>{product.productTitle}</h3>

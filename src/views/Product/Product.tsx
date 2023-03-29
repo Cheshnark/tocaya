@@ -11,9 +11,6 @@ const Product = () => {
     const { id } = useParams()
     const {data, loading, error} = useFetch(`http://localhost:8000/shop/${id}`)
 
-    console.log(data);
-    
-
     return (
         <main className="product">
             <NavBar />

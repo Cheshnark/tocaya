@@ -40,7 +40,7 @@ const ImageDisplayer = ({images}:Props) => {
                             alt="perretes-img" 
                             id={image._id} 
                             onClick ={bigImage}
-                            className=""/>    
+                            key={image._id}/>    
                 )   
             })}
             </div>

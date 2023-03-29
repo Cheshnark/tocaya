@@ -8,9 +8,7 @@ import Footer from "../../components/Footer/Footer"
 const Portfolio = () => {
     const [visibleSection, setVisibleSection] = useState<number>(1)
     const {data, loading, error} = useFetch("http://localhost:8000/portfolio")
-
-    console.log(data);
-
+    
     return (
         <>
         <NavBar />
@@ -23,20 +21,21 @@ const Portfolio = () => {
                 {data.map((section, i) => {
                     return <h3 
                         className='text-4xl text-center hover:cursor-pointer' 
-                        onClick={() => setVisibleSection(i + 1)}>
+                        onClick={() => setVisibleSection(i + 1)}
+                        key={section._id} >
                             {section.name} </h3>
                 })}
             </header>
             <hr className="hidden md:block mb-4 border-1 border-black"/>
             <div className="portfolio-small-screen md:hidden">
                 {data.map(section => {
-                    return <PortfolioSection collection={section}/>
+                    return <PortfolioSection collection={section} key={section._id}/>
                 })}
             </div>
             <div className="portfolio-big-screen hidden md:block">
                 {data.map((section, i) => {
                     return visibleSection === i+1 &&
-                        <PortfolioSection collection={section}/>
+                        <PortfolioSection collection={section} key={section._id}/>
                 })}
             </div>
         </main>
