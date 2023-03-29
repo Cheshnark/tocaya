@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const ProfileAdmin = () => {
     const [showImage, setShowImage] = useState(true)
     const [showName, setShowName] = useState(true)
     const [showDescription, setShowDescription] = useState(true)
     const [changed, setChanged] = useState(false)
+    const { admin } = useAuthContext()
 
     const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
 
@@ -20,14 +22,21 @@ const ProfileAdmin = () => {
         e.preventDefault()
         const formData = new FormData();
         formData.append('id', data[0]._id)
-        formData.append('profilePicture', tempProfile.profilePicture);
         formData.append('name', tempProfile.name);
         formData.append('description', tempProfile.description);
         formData.append('oldFileName', oldFile)
+        if(JSON.stringify(tempProfile.profilePicture) !== JSON.stringify(oldFile)) {
+            formData.append('profilePicture', tempProfile.profilePicture);
+        }else {
+            formData.append('profilePicture', "");
+        }
 
         const response = await fetch('http://localhost:8000/profile', {
             method: 'PATCH',
             body: formData,
+            headers: {
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -39,6 +48,11 @@ const ProfileAdmin = () => {
             setShowName(true)
             setShowDescription(true)
             setHasChanged(!hasChanged)
+            setTempProfile({
+                name: data ? data[0].name : "",
+                description: data ? data[0].description : "",
+                profilePicture: data ? data[0].profilePicture : undefined
+            })
             console.log('Profile updated correctly', json.profile)
         }
     }
