@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useFetch } from '../../hooks/useFetch';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useState, useEffect } from 'react'
+import { useFetch } from '../../hooks/useFetch'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const ProfileAdmin = () => {
     const [showImage, setShowImage] = useState(true)

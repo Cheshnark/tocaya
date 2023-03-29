@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useFetch } from "../../hooks/useFetch"
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 import PortfolioNameInput from '../PortfolioNameInput/PortfolioNameInput'
 import PortfolioImageInput from '../PortfolioImageInput/PortfolioImageInput'
@@ -18,6 +19,7 @@ const PortfolioAdmin = () => {
     const [tempSectionName, setTempSectionName] = useState("")
     const [tempPicture, setTempPicture] = useState()
     const [tempId, setTempId] = useState("")
+    const { admin } = useAuthContext()
 
     const createSection = async (e: React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault()
@@ -27,7 +29,10 @@ const PortfolioAdmin = () => {
         const response = await fetch('http://localhost:8000/portfolio/section', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -49,7 +54,10 @@ const PortfolioAdmin = () => {
         const response = await fetch('http://localhost:8000/portfolio/section', {
             method: 'DELETE',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -71,6 +79,7 @@ const PortfolioAdmin = () => {
         const response = await fetch('http://localhost:8000/portfolio/section/image', {
             method: 'PATCH',
             body: formData,
+            headers: {'Authorization': `Bearer ${admin.token}`}
         })
 
         const json = await response.json()
@@ -90,7 +99,10 @@ const PortfolioAdmin = () => {
         const response = await fetch('http://localhost:8000/portfolio/section/image', {
             method: 'DELETE',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -111,7 +123,10 @@ const PortfolioAdmin = () => {
         const response = await fetch('http://localhost:8000/portfolio/section/', {
             method: 'PATCH',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()

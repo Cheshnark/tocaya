@@ -1,24 +1,35 @@
 import { useState, useEffect } from "react"
 
+interface Image {
+  destination: string;
+  encoding: string;
+  fieldname: string;
+  filename: string;
+  mimetype: string;
+  originalname: string;
+  path: string;
+  size: number
+}
 interface Section {
   _id: string;
   name?: string;
   images?: Array<string>;
   description?: string;
-  profilePicture: {
-    destination: string;
-    encoding: string;
-    fieldname: string;
-    filename: string;
-    mimetype: string;
-    originalname: string;
-    path: string;
-    size: number
-  }
+  profilePicture: Image
+  
+}
+
+interface Product {
+  productTitle: string;
+  productInnerTitle: string;
+  productDescription: string;
+  productInnerDescription: string;
+  images: Array<Image>;
+  _id:string
 }
 
 export function useFetch(url:string) {
-  const [data, setData] = useState< null | Array<Section>>()
+  const [data, setData] = useState< null | Array<Section> | Array<Product>>()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [controller, setController] = useState<AbortController | null>(null)

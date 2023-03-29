@@ -1,12 +1,20 @@
+import { verify } from "jsonwebtoken"
+
 import { useLogout } from "../../hooks/useLogout"
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const NavBarAdmin = () => {
     const { logout } = useLogout()
     const { admin } = useAuthContext()
-
-    console.log(admin);
     
+    // function isAuthenticated() {
+    //     const token = localStorage.getItem('token');
+    //     verify(token, SECRET, (err, decoded) => {
+    //         if (err) {
+    //             localStorage.clear();
+    //         }}
+    //     });
+    // }
 
     const logoutClick = () => {
         logout()

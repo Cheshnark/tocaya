@@ -2,11 +2,40 @@ import { useState, useEffect } from 'react';
 
 import Calendar from '../Calendar/Calendar';
 
-const ProductForm = () => {
-    const [color, setColor] = useState("#5C9665")
+interface Image {
+    destination: string;
+    encoding: string;
+    fieldname: string;
+    filename: string;
+    mimetype: string;
+    originalname: string;
+    path: string;
+    size: number
+  }  
+  interface Props {
+    product: {
+        productTitle: string;
+        productInnerTitle: string;
+        productDescription: string;
+        productInnerDescription: string;
+        images: Array<Image>;
+        size: Array<string>;
+        backgroundColor: Array<{
+            name: string;
+            hex: string
+        }>
+        _id:string
+    }
+  }
+
+const ProductForm = ({product}:Props) => {
+    const [color, setColor] = useState(product.backgroundColor.length > 0 && product.backgroundColor[0].hex)
     const [showWarning, setShowWarning] = useState(false)
     const [showFileField, setShowFileField] = useState(false)
     const [showCalendar, setShowCalendar] = useState(false)
+
+    console.log(product);
+    
     
     const colorPick = (e:any) => {
         setColor(e.target.value)
@@ -28,24 +57,23 @@ const ProductForm = () => {
 
     return (
         <form action="submit" className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center">
-            <h3 className="mt-4 text-4xl">Elige los detalles</h3>
-            <p className='text-justify'>
-                Los perretes son tus amigos, buenos amigos, buenos perretes, mejores personas. Al menos mejores
-                personas que muchas personas. No es que sea difícil, es verdad, pero tu me entiendes. No quieres un
-                retrato de tu perrete? No harías una foto a tu hijo? Un cuadro a tu hijo? Pero tienes hijo? No? Sí? Da igual.
-                Retrato de tu perrete.
-            </p>
+            {product && 
+            <>
+            <h3 className="mt-4 text-4xl">{product.productInnerTitle}</h3>
+            <p className='text-justify'>{product.productInnerDescription}</p>
             <label htmlFor="">Tamaño</label>
             <select name="tamaño" id="" className="w-6/12 mx-auto">
-                <option value="15x15">15x15</option>
-                <option value="30x30">30x30</option>
-                <option value="60x60">60x60</option>
+                {product.size.length > 0 &&
+                    product.size.map(size => {
+                        return <option value={size}>{size}</option>
+                })}
             </select>
             <label htmlFor="color">Color del fondo</label>
             <select name="color" id="" className="w-6/12 mx-auto" style={{backgroundColor:`${color}`}} onChange={colorPick}>
-                <option value="#5C9665" style={{backgroundColor:"#5C9665"}} >verde chachi</option>
-                <option value="#007fff" style={{backgroundColor:"#007fff"}} >azul molón</option>
-                <option value="#B25D72" style={{backgroundColor:"#B25D72"}} >rosa chido</option>
+                {product.backgroundColor.length > 0 &&
+                    product.backgroundColor.map(bgColor => {
+                        return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} >{bgColor.name}</option>
+                })}
             </select>
             {showWarning &&
             <aside className='flex justify-center items-center gap-1 p-2 border-2 border-green-200 bg-green-50'>
@@ -97,6 +125,8 @@ const ProductForm = () => {
             <label>Comentarios</label>
             <textarea name="comentas" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50"></textarea>
             <button className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pedir perrete!</button>
+            </>
+            }
         </form>
     )
 }

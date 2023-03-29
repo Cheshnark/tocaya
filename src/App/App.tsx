@@ -20,7 +20,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/tienda" element={<Shop />} />
-            <Route path="/perretes" element={<Product />} />
+            <Route path="/producto/:id" element={<Product />} />
             <Route path="/admin" element={ admin ? <Admin /> : <Navigate to="/admin/login" />} />
             <Route path="/admin/login" element={ !admin ? <Login /> : <Navigate to="/admin" />} />
             {/* <Route path="*" element={<NotFound />} /> */}

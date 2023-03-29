@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 import ShopNameInput from '../ShopNameInput/ShopNameInput';
 import ShopImageInput from '../ShopImageInput/ShopImageInput';
@@ -8,6 +9,7 @@ import ShopBackgroundInput from '../ShopBackgroundInput/ShopBackgroundInput';
 
 const ShopAdmin = () => {
     const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
+    const { admin } = useAuthContext()
     
     const [showNameInput, setShowNameInput] = useState(false)
     const [showImageInput, setShowImageInput] = useState(false)
@@ -34,7 +36,10 @@ const ShopAdmin = () => {
         const response = await fetch('http://localhost:8000/shop/product', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -55,7 +60,10 @@ const ShopAdmin = () => {
         const response = await fetch('http://localhost:8000/shop/product/image', {
             method: 'DELETE',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -76,6 +84,9 @@ const ShopAdmin = () => {
         const response = await fetch('http://localhost:8000/shop/product', {
             method: 'PATCH',
             body: formData,
+            headers: {
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -126,7 +137,10 @@ const ShopAdmin = () => {
         const response = await fetch('http://localhost:8000/shop/product', {
             method: 'PATCH',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -179,7 +193,10 @@ const ShopAdmin = () => {
         const response = await fetch('http://localhost:8000/shop/product', {
             method: 'PATCH',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
@@ -211,7 +228,10 @@ const ShopAdmin = () => {
         const response = await fetch('http://localhost:8000/shop/product/item', {
             method: 'DELETE',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
         })
 
         const json = await response.json()
