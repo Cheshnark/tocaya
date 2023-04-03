@@ -10,7 +10,7 @@ interface ContextInterface {
   token: string;
 }
 
-export const AuthContext = createContext<ContextInterface | null>()
+export const AuthContext = createContext<ContextInterface | null>(null)
 
 export const authReducer = (state:any, action:ActionType) => {
     switch(action.type) {
