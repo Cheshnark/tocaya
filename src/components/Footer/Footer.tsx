@@ -1,4 +1,7 @@
 import kofiLogo from '../../images/kofilogo.png'
+import behanceLogo from '../../images/behance.png'
+import instagramLogo from '../../images/instagram.png'
+import linkedinLogo from '../../images/linkedin.png'
 
 const Footer = () => {
     const year:number = (new Date()).getFullYear(); 
@@ -11,22 +14,25 @@ const Footer = () => {
                 <div className="contact-info w-10/12 mx-auto flex flex-col justify-center gap-8 text-justify">
                     <div className="social">
                         <figure className="social-icons flex justify-center align-middle gap-8">
-                            <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:bg-red-500 hover:scale-105 transition-all">
+                            <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://www.instagram.com/tocayavazquez/">
-                                    <i className="fa-brands fa-instagram m-4" />
+                                    {/* <i className="fa-brands fa-instagram m-4" /> */}
+                                    <img src={instagramLogo} alt="" />
                                 </a>
                             </div>
-                            <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:bg-red-500 hover:scale-105 transition-all">
+                            <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://www.behance.net/veronicavazquez8">
-                                    <i className="fa-brands fa-behance m-4" />
+                                    {/* <i className="fa-brands fa-behance m-4" /> */}
+                                    <img src={behanceLogo} alt="" />
                                 </a>
                             </div>
-                            <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:bg-red-500 hover:scale-105 transition-all">
-                                <a href="https://es.linkedin.com/in/tocayavazquez">
-                                    <i className="fa-brands fa-linkedin-in m-4" />
+                            <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
+                                <a href="https://www.linkedin.com/in/tocayavazquez/">
+                                    {/* <i className="fa-brands fa-linkedin-in m-4" /> */}
+                                    <img src={linkedinLogo} alt="" />
                                 </a>
                             </div>
-                            <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:bg-red-500 hover:scale-105 transition-all">
+                            <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://ko-fi.com/">
                                     <img src={kofiLogo} alt="" />
                                 </a>

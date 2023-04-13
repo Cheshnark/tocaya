@@ -6,6 +6,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Footer from '../../components/Footer/Footer'
 
 import kofiLogo from '../../images/kofilogo.png'
+import tocaya from '../../images/tocaya-logo.png'
 import { useEffect, useState } from 'react'
 
 const Main = () => {
@@ -33,7 +34,8 @@ const Main = () => {
                         <button>Dibujos</button>
                     </Link>
                 </div>
-                <h1 className="text-8xl">Tocaya</h1>
+                <h1 className="text-8xl hidden">Tocaya Vazquez</h1>
+                <img src={tocaya} alt="tocaya-vazquez-logo" className='w-11/12 mx-auto'/>
                 <div className='md:hidden'>
                     <Hash smooth to={"/#about-me"} onClick={() => setShown(!shown)}>
                         <button>Info sobre yo</button>
