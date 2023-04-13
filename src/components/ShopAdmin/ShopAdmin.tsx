@@ -255,7 +255,7 @@ const ShopAdmin = () => {
                 {data &&
                     data.map(product => {
                         return(
-                            <div className="shop-admin__product bg-zinc-200 p-4 mb-4 flex flex-col justify-center">
+                            <div className="shop-admin__product bg-zinc-200 p-4 mb-4 flex flex-col justify-center" key={product._id}>
                                 {showProductName ? (
                                     <div className="product-title flex justify-start mb-4">
                                         <label>Product title</label>

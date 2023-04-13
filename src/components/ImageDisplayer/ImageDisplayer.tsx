@@ -30,7 +30,7 @@ const ImageDisplayer = ({images}:Props) => {
     }
 
     return ( 
-        <figure className="image-container w-10/12 mx-auto">
+        <figure className="image-container w-10/12 mx-auto max-w-sm">
             {mainImage !== "" ? <img src={mainImage} alt="main-image" /> : <img src={`http://localhost:8000/images/shop/${images[0].filename}`} alt="main-image" />}
             <div className="miniatures grid grid-flow-row grid-cols-3 max-w-full mt-4 gap-4 hover:cursor-pointer">
                 {images.map((image) => {
