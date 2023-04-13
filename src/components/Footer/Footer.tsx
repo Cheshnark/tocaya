@@ -1,7 +1,7 @@
 import kofiLogo from '../../images/kofilogo.png'
 
 const Footer = () => {
-    const year:Number = (new Date()).getFullYear(); 
+    const year:number = (new Date()).getFullYear(); 
 
     return (
         <footer className="footerh-full" id="contact">
@@ -43,13 +43,24 @@ const Footer = () => {
                         </p>
                     </div>
                 </div>
-                <form action="submit" className="contact-form flex flex-col gap-4 w-8/12 mx-auto" >
+                <form 
+                    action="https://formsubmit.co/4thstringinE@gmail.com" 
+                    method="POST" 
+                    className="contact-form flex flex-col gap-4 w-8/12 mx-auto" >
                     <h4 className="text-center text-lg font-bold">¿Algo qué quieras decirme?</h4>
                     <div className="contact-form__user-info grid grid-cols-2 grid-rows-2 gap-y-4 items-center text-center">
                         <label>Nombre: </label>
-                        <input type="text" className="bg-green-100 border-2 border-green-300 rounded-lg"/>
+                        <input 
+                            type="text" 
+                            name='nombre'
+                            autoComplete="off" 
+                            className="bg-green-100 border-2 border-green-300 rounded-lg"/>
                         <label>Email: </label>
-                        <input type="text" className="bg-green-100 border-2 border-green-300 rounded-lg"/>
+                        <input 
+                            type="text" 
+                            name='email'
+                            autoComplete="off"
+                            className="bg-green-100 border-2 border-green-300 rounded-lg"/>
                     </div>
                     <textarea 
                         name="mail-body" 

@@ -37,7 +37,7 @@ const NavBar = () => {
             {shown && (
             <div onClick={handleClick}>
               <div className="div-drawercomp h-screen w-screen fixed z-10 left-0 top-0 overflow-x-hidden bg-black/80">
-                <DrawerComponent shown={shown}/>
+                <DrawerComponent />
               </div>
             </div>
           )}

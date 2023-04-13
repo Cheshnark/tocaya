@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import Calendar from '../Calendar/Calendar';
-
 interface Image {
     destination: string;
     encoding: string;
@@ -32,10 +30,14 @@ const ProductForm = ({product}:Props) => {
     const [color, setColor] = useState(product.backgroundColor.length > 0 && product.backgroundColor[0].hex)
     const [showWarning, setShowWarning] = useState(false)
     const [showFileField, setShowFileField] = useState(false)
-    const [showCalendar, setShowCalendar] = useState(false)
     
     const colorPick = (e:any) => {
+        e.preventDefault()
+
         setColor(e.target.value)
+        console.log(e.target.name);
+        
+        
         if(!showWarning){
             setShowWarning(true)
             setTimeout(() => {
@@ -44,32 +46,33 @@ const ProductForm = ({product}:Props) => {
         }
     }
 
-    const openCalendar = (e:any) => {
-        setShowCalendar(!showCalendar)
-    }
-
-    const fileField = () => {
+    const fileField = (e:any) => {
+        e.preventDefault()
         setShowFileField(!showFileField)
     }
 
     return (
-        <form action="submit" className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center">
+        <form 
+            action="https://formsubmit.co/4thstringinE@gmail.com" 
+            method="POST"
+            encType="multipart/form-data" 
+            className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center">
             {product && 
             <>
             <h3 className="mt-4 text-4xl">{product.productInnerTitle}</h3>
             <p className='text-justify'>{product.productInnerDescription}</p>
-            <label htmlFor="">Tamaño</label>
-            <select name="tamaño" id="" className="w-6/12 mx-auto">
+            <label htmlFor="size">Tamaño</label>
+            <select name="tamaño" id="size" className="w-6/12 mx-auto">
                 {product.size.length > 0 &&
                     product.size.map((size, i) => {
-                        return <option value={size} key={Math.random() + i}>{size}</option>
+                        return <option value={size} key={i}>{size}</option>
                 })}
             </select>
             <label htmlFor="color">Color del fondo</label>
-            <select name="color" id="" className="w-6/12 mx-auto" style={{backgroundColor:`${color}`}} onChange={colorPick}>
+            <select name="color" id="color" className="w-6/12 mx-auto" style={{backgroundColor:`${color}`}} onChange={colorPick}>
                 {product.backgroundColor.length > 0 &&
                     product.backgroundColor.map((bgColor, i) => {
-                        return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} key={Math.random() + i} >{bgColor.name}</option>
+                        return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} key={i} >{bgColor.name}</option>
                 })}
             </select>
             {showWarning &&
@@ -82,46 +85,42 @@ const ProductForm = ({product}:Props) => {
             </aside>
             }
             <label 
-                onClick={fileField}
                 className='bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105' >
                     Sube 5 foto de tu mascota 
-                    <i className="fa-solid fa-angle-down pl-4" />
+                    <i onClick={fileField} className="fa-solid fa-angle-down pl-4" />
             </label>
             {showFileField &&
             <div className="input-drawer flex flex-col justify-center gap-2">
-                <input type="file" 
-                    id="pet-image" 
-                    name="pet-image" 
+                <input type="file"  
+                    name="attachment-1" 
+                    accept="image/*"
                     className="w-10/12 mx-auto" />
-                <input type="file" 
-                    id="pet-image" 
-                    name="pet-images" 
+                <input type="file"  
+                    name="attachment-2" 
+                    accept="image/*"
                     className="w-10/12 mx-auto" />
-                <input type="file" 
-                    id="pet-image" 
-                    name="pet-images" 
+                <input type="file"  
+                    name="attachment-3"
+                    accept="image/*"
                     className="w-10/12 mx-auto" />
-                <input type="file" 
-                    id="pet-image" 
-                    name="pet-images" 
-                    className="w-10/12 mx-auto" />
-                <input type="file" 
-                    id="pet-image" 
-                    name="pet-images" 
+                <input type="file"  
+                    name="attachment-4"
+                    accept="image/*"
                     className="w-10/12 mx-auto" />
             </div>}
-            <label
-            onClick={openCalendar}
-            className='bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105' >
-                Fecha de entrega
-                <i className="fa-solid fa-angle-down pl-4" />
-            </label>
-            {showCalendar &&
-                <Calendar />
-            }
+            <label htmlFor='email'>Email</label>
+            <input 
+                type="email" 
+                name='email' 
+                id='email' 
+                required 
+                autoComplete="off"
+                className="border-2 border-green-200 bg-green-50"/>
             <label>Comentarios</label>
-            <textarea name="comentas" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50"></textarea>
-            <button className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pedir perrete!</button>
+            <textarea name="comentarios" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50"></textarea>
+            <button 
+                type="submit" 
+                className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pedir perrete!</button>
             </>
             }
         </form>

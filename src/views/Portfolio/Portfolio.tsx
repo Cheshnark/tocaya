@@ -8,6 +8,8 @@ import Footer from "../../components/Footer/Footer"
 const Portfolio = () => {
     const [visibleSection, setVisibleSection] = useState<number>(1)
     const {data, loading, error} = useFetch("http://localhost:8000/portfolio")
+
+    document.body.style.overflow = "visible"
     
     return (
         <>

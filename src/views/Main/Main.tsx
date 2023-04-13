@@ -5,11 +5,20 @@ import { useFetch } from '../../hooks/useFetch'
 import NavBar from '../../components/NavBar/NavBar'
 import Footer from '../../components/Footer/Footer'
 
-import onion from '../../images/profile-onion.jpg'
 import kofiLogo from '../../images/kofilogo.png'
+import { useEffect, useState } from 'react'
 
 const Main = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/profile")
+    const [shown, setShown] = useState(true)
+
+    useEffect(() => {
+        if(shown) {
+            document.body.style.overflow = "hidden"
+        }else {
+            document.body.style.overflow = "visible"
+        }
+    },[shown])
 
     return (
         <>
@@ -17,19 +26,21 @@ const Main = () => {
             <NavBar />
         </div>
         <main className="main">
-            <section className="front h-screen min-h-full flex flex-col justify-around text-center">
-                <div>
+            {shown &&
+            <section className="front h-screen w-screen min-h-full flex flex-col justify-around text-center bg-white fixed">
+                <div className='md:hidden' >
                     <Link to={"/portfolio"}>
                         <button>Dibujos</button>
                     </Link>
                 </div>
                 <h1 className="text-8xl">Tocaya</h1>
-                <div>
-                    <Hash smooth to={"/#about-me"}>
+                <div className='md:hidden'>
+                    <Hash smooth to={"/#about-me"} onClick={() => setShown(!shown)}>
                         <button>Info sobre yo</button>
                     </Hash>
                 </div>
             </section>
+            }
             <div className="mobile-navbar block md:hidden">
                 <NavBar />
             </div>
