@@ -1,3 +1,9 @@
+@font-face {
+	font-family: brasley;
+	src: url('../fonts/brasley-medium.ttf');
+  }
+  
+
 *{
 	box-sizing: border-box;
 	margin: 0;

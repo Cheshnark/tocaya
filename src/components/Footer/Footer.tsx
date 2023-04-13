@@ -10,31 +10,28 @@ const Footer = () => {
         <footer className="footerh-full" id="contact">
             <hr className="border-1 border-black"/>
             <h2 className="mt-8 text-center text-4xl font-bold" >Contacto</h2>
-            <div className="contact-grid grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div className="contact-grid grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-7xl mx-auto">
                 <div className="contact-info w-10/12 mx-auto flex flex-col justify-center gap-8 text-justify">
                     <div className="social">
                         <figure className="social-icons flex justify-center align-middle gap-8">
                             <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://www.instagram.com/tocayavazquez/">
-                                    {/* <i className="fa-brands fa-instagram m-4" /> */}
-                                    <img src={instagramLogo} alt="" />
+                                    <img src={instagramLogo} alt="Instagram logo" />
                                 </a>
                             </div>
                             <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://www.behance.net/veronicavazquez8">
-                                    {/* <i className="fa-brands fa-behance m-4" /> */}
-                                    <img src={behanceLogo} alt="" />
+                                    <img src={behanceLogo} alt="Behance logo" />
                                 </a>
                             </div>
                             <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://www.linkedin.com/in/tocayavazquez/">
-                                    {/* <i className="fa-brands fa-linkedin-in m-4" /> */}
-                                    <img src={linkedinLogo} alt="" />
+                                    <img src={linkedinLogo} alt="Linkedin logo" />
                                 </a>
                             </div>
                             <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:scale-105 transition-all">
                                 <a href="https://ko-fi.com/">
-                                    <img src={kofiLogo} alt="" />
+                                    <img src={kofiLogo} alt="Kofi logo" />
                                 </a>
                             </div>
                         </figure>
@@ -78,7 +75,7 @@ const Footer = () => {
                 </form>
             </div>
             
-            <div className="copy-mail mt-8 text-center">
+            <div className="copy-mail mt-8 mb-2 text-center">
                 <p>©{year} Tocaya Vázquez</p>
                 <p>TocayaVazquez@gmail.com</p>
             </div>

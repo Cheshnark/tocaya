@@ -15,24 +15,28 @@ const NavBar = () => {
 
     return (
         <nav className="py-8 px-4">
-            <div className="navbar-container sm:flex justify-around invisible sm:visible hidden">
+            <div className="navbar-container sm:flex justify-evenly lg:justify-center invisible sm:visible hidden">
                 <ul className="navbar-content-2 flex gap-4">
                     <Hash to='/#about-me' className='self-center'><li className='mx-2'>Sobre yo</li></Hash>
                     <Link to='/portfolio' className='self-center'><li className='mx-2'>Trabajos</li></Link>                   
                 </ul>
                 <figure className="navbar-logo w-4/12">
-                    <img src={tocaya} alt="tocaya-log" className='mx-auto'/>
+                    <Link to='/#about-me'>
+                        <img src={tocaya} alt="Tocaya Vázquez logo" className='mx-auto max-h-40'/>
+                    </Link>
                 </figure>
                 <ul className="navbar-content-2 flex gap-4">
                     <Link to='/tienda' className='self-center'><li className='mx-2'>Tienda</li></Link>
                     <Hash to='#contact' className='self-center'><li className='mx-2'>Contacto</li></Hash>   
                 </ul>
             </div>
-            <div className="navbar-container-mobile sm:invisible flex gap-4 items-center justify-between px-4">
+            <div className="navbar-container-mobile sm:hidden flex gap-4 items-center justify-between px-4">
                 <figure className="navbar-logo w-5/12">
-                    <img src={tocaya} alt="tocaya-log" className='mx-auto'/>
+                    <Link to='/#about-me'>
+                        <img src={tocaya} alt="Tocaya Vázquez logo" className='mx-auto'/>
+                    </Link>
                 </figure>
-                <i className="mobile-navigation fa-solid fa-bars" onClick={handleClick} style={{visibility: shown && 'hidden'}} />  
+                <i className="mobile-navigation fa-solid fa-bars sm:invisible" onClick={handleClick} />  
             </div>
             {shown && (
             <div onClick={handleClick}>
