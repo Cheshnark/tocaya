@@ -57,20 +57,20 @@ const Footer = () => {
                             type="text" 
                             name='nombre'
                             autoComplete="off" 
-                            className="bg-green-100 border-2 border-green-300 rounded-lg"/>
+                            className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
                         <label>Email: </label>
                         <input 
                             type="text" 
                             name='email'
                             autoComplete="off"
-                            className="bg-green-100 border-2 border-green-300 rounded-lg"/>
+                            className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
                     </div>
                     <textarea 
                         name="mail-body" 
                         id="body" 
                         cols={30} 
                         rows={5}
-                        className="bg-green-100 border-2 border-green-300 rounded-lg"></textarea>
+                        className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"></textarea>
                     <button className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Enviar!</button>
                 </form>
             </div>

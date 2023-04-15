@@ -20,7 +20,7 @@ const NavBar = () => {
                     <Hash to='/#about-me' className='self-center'><li className='mx-2'>Sobre yo</li></Hash>
                     <Link to='/portfolio' className='self-center'><li className='mx-2'>Trabajos</li></Link>                   
                 </ul>
-                <figure className="navbar-logo w-4/12">
+                <figure className="navbar-logo w-4/12 2xl:max-w-lg">
                     <Link to='/#about-me'>
                         <img src={tocaya} alt="Tocaya Vázquez logo" className='mx-auto max-h-40'/>
                     </Link>
