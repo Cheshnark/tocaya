@@ -17,10 +17,10 @@ const Product = () => {
             {error && <div className="product-error">{error}</div> }
             {loading && <div className="product-loading">Loading...</div> }
             {data && 
-                <>
+                <div className='lg:flex lg:max-w-6xl lg:mx-auto'>
                 <ImageDisplayer images={data[0].images}/>
                 <ProductForm product={data[0]}/>
-                </>
+                </div>
             }
             <Footer />
         </main>

@@ -56,20 +56,20 @@ const ProductForm = ({product}:Props) => {
             action="https://formsubmit.co/4thstringinE@gmail.com" 
             method="POST"
             encType="multipart/form-data" 
-            className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center">
+            className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center sm:max-w-sm lg:max-w-md">
             {product && 
             <>
             <h3 className="mt-4 text-4xl">{product.productInnerTitle}</h3>
             <p className='text-justify'>{product.productInnerDescription}</p>
             <label htmlFor="size">Tamaño</label>
-            <select name="tamaño" id="size" className="w-6/12 mx-auto">
+            <select name="tamaño" id="size" className="w-6/12 mx-auto rounded-lg bg-green-50">
                 {product.size.length > 0 &&
                     product.size.map((size, i) => {
-                        return <option value={size} key={i}>{size}</option>
+                        return <option value={size} key={i} className='bg-green-50'>{size}</option>
                 })}
             </select>
             <label htmlFor="color">Color del fondo</label>
-            <select name="color" id="color" className="w-6/12 mx-auto" style={{backgroundColor:`${color}`}} onChange={colorPick}>
+            <select name="color" id="color" className="w-6/12 mx-auto rounded-lg" style={{backgroundColor:`${color}`}} onChange={colorPick}>
                 {product.backgroundColor.length > 0 &&
                     product.backgroundColor.map((bgColor, i) => {
                         return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} key={i} >{bgColor.name}</option>
@@ -115,9 +115,9 @@ const ProductForm = ({product}:Props) => {
                 id='email' 
                 required 
                 autoComplete="off"
-                className="border-2 border-green-200 bg-green-50"/>
+                className="border-2 border-green-200 bg-green-50 rounded-lg focus:border-green-500 focus:outline-none"/>
             <label>Comentarios</label>
-            <textarea name="comentarios" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50"></textarea>
+            <textarea name="comentarios" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50 rounded-lg focus:border-green-500 focus:outline-none"></textarea>
             <button 
                 type="submit" 
                 className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pedir perrete!</button>
