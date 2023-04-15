@@ -86,7 +86,7 @@ const ProductForm = ({product}:Props) => {
             }
             <label 
                 className='bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105' >
-                    Sube 5 foto de tu mascota 
+                    Sube 4 foto de tu mascota 
                     <i onClick={fileField} className="fa-solid fa-angle-down pl-4" />
             </label>
             {showFileField &&

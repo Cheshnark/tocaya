@@ -13,31 +13,33 @@ import { useEffect, useState } from 'react'
 const Main = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/profile")
     const [shown, setShown] = useState(true)
+    const [showNav, setShowNav] = useState(false)
 
     useEffect(() => {
         if(shown) {
             document.body.style.overflow = "hidden"
         }else {
             document.body.style.overflow = "visible"
+            setShowNav(true)
         }
     },[shown])
 
     return (
         <>
-        <div className="desktop-navbar hidden md:block">
+        <div className={`desktop-navbar hidden ${ showNav && "md:block"}`}>
             <NavBar />
         </div>
         <main className="main sm:mb-12">
             {shown &&
-            <section className="front h-screen w-screen min-h-full flex flex-col justify-around text-center bg-white fixed">
-                <div className='md:hidden' >
+            <section className="front h-screen w-screen min-h-full flex flex-col justify-around text-center bg-white fixed md:grid md:grid-cols-2 md:justify-center">
+                <div className='md:self-center hover:scale-105 transition-all' >
                     <Link to={"/portfolio"}>
                         <button>Dibujos</button>
                     </Link>
                 </div>
                 <h1 className="text-8xl hidden">Tocaya Vazquez</h1>
-                <img src={tocaya} alt="Tocaya Vazquez logo" className='w-11/12 mx-auto'/>
-                <div className='md:hidden'>
+                <img src={tocaya} alt="Tocaya Vazquez logo" className='w-10/12 md:w-6/12 mx-auto md:row-start-1 md:col-span-2 md:self-end'/>
+                <div className='md:self-center hover:scale-105 transition-all'>
                     <Hash smooth to={"/#about-me"} onClick={() => setShown(!shown)}>
                         <button>
                             <img src={sobreMi} alt="Botón sobre mi" className='w-7/12 mx-auto'/>
@@ -55,11 +57,11 @@ const Main = () => {
                     {error && <div className="main-error">{error}</div> }
                     {loading && <div className="main-loading">Loading...</div> }
                     {data && 
-                    <div className="about-me-container flex flex-col sm:flex-row sm:gap-4 justify-center align-middle">
+                    <div className="about-me-container flex flex-col sm:flex-row sm:gap-8 justify-center align-middle">
                         <figure className='w-8/12 mx-auto'> 
                             <img src={`http://localhost:8000/images/${data[0].profilePicture.filename}`} alt="" className='rounded-full mx-auto max-h-80'/>
                         </figure>
-                        <div className="about-me-content w-10/12 mt-4 mx-auto flex flex-col">
+                        <div className="about-me-content w-10/12 mt-4 mb-6 mx-auto flex flex-col">
                             <h3 className='text-4xl text-center'>{data[0].name}</h3>
                             <p className='mt-4 text-justify'>{data[0].description}</p>
                             <a href="https://ko-fi.com/"><img src={kofiLogo} alt="Kofi logo" className='w-12 mx-auto mt-2'/></a>
