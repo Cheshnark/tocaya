@@ -50,6 +50,7 @@ const Footer = () => {
                     action="https://formsubmit.co/4thstringinE@gmail.com" 
                     method="POST" 
                     className="contact-form flex flex-col gap-4 w-8/12 mx-auto" >
+                    <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
                     <h4 className="text-center text-lg font-bold">¿Algo qué quieras decirme?</h4>
                     <div className="contact-form__user-info grid grid-cols-2 grid-rows-2 gap-y-4 items-center text-center">
                         <label>Nombre: </label>
