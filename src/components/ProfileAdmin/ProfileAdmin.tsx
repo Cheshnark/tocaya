@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useLogout } from '../../hooks/useLogout'
 
 const ProfileAdmin = () => {
     const [showImage, setShowImage] = useState(true)
@@ -8,6 +9,7 @@ const ProfileAdmin = () => {
     const [showDescription, setShowDescription] = useState(true)
     const [changed, setChanged] = useState(false)
     const { admin } = useAuthContext()
+    const { logout } = useLogout()
 
     const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
 
@@ -17,6 +19,12 @@ const ProfileAdmin = () => {
         profilePicture: data ? data[0].profilePicture : undefined
     })
     const [oldFile, setOldFile] = useState("")
+
+    useEffect(() => {    
+        if(!admin) {
+          logout()
+        }
+      },[])
 
     const handleSubmit = async (e:any) => {        
         e.preventDefault()

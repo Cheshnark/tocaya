@@ -54,6 +54,30 @@ const ShopAdmin = () => {
         }
     }
 
+    const deleteProduct = async () => {
+        const data = {id:tempId}
+        
+        const response = await fetch('http://localhost:8000/shop/product', {
+            method: 'DELETE',
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${admin.token}`
+            }
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            console.log(json.error)
+        }else if(response.ok){
+            setShowNameInput(false)
+            setHasChanged(!hasChanged)
+            setTempProductName("")
+            console.log('Product created correctly', json.profile)
+        }
+    }
+
     const deletePicture = async (pictureId:any) => {
         const data = {filename: pictureId, id:tempId}
 
@@ -257,7 +281,7 @@ const ShopAdmin = () => {
                         return(
                             <div className="shop-admin__product bg-zinc-200 p-4 mb-4 flex flex-col justify-center" key={product._id}>
                                 {showProductName ? (
-                                    <div className="product-title flex justify-start mb-4">
+                                    <div className="product-title flex justify-start items-center mb-4">
                                         <label>Product title</label>
                                         <h3 className="text-2xl mx-4">{product.productTitle}</h3>
                                         <div className="product-name__items flex justify-around items-center gap-2">
@@ -390,7 +414,8 @@ const ShopAdmin = () => {
                                     {product.images.length > 0 &&
                                     product.images.map(image => {
                                         return (
-                                            <div className="product-image flex items-center gap-2 w-11/12 max-w-sm">
+                                            <div 
+                                                className="product-image flex items-center gap-2 w-11/12 max-w-sm" key={image.filename}>
                                                 <img 
                                                     src={`http://localhost:8000/images/shop/${image.filename}`} 
                                                     alt="product-image"/>
@@ -415,9 +440,9 @@ const ShopAdmin = () => {
                                 <div className="product-collapsables flex justify-around p-4 mb-8">
                                     <div className="product-size w-60 flex flex-col">
                                         <h4 className="text-center mb-4">Tamaño del producto</h4>
-                                        {product.size.map(s => {
+                                        {product.size.map((s, i) => {
                                             return(
-                                                <div className="produc-size__object flex justify-between gap-4">
+                                                <div className="produc-size__object flex justify-between gap-4" key={i + Math.random() *1000}>
                                                     <p className="ml-4">{s}</p>
                                                     <div className="produc-size__object-items">
                                                         <i 
@@ -442,7 +467,7 @@ const ShopAdmin = () => {
                                         <h4 className="text-center mb-4">Color de fondo</h4>
                                         {product.backgroundColor.map(background=> {
                                             return(
-                                                <div className="product-background__object flex justify-between">
+                                                <div className="product-background__object flex justify-between" key={background.hex}>
                                                     <p className="ml-4">{background.name}</p>
                                                     <p className="ml-4">{background.hex}</p>
                                                     <div className="produc-background__object-items">
@@ -464,6 +489,13 @@ const ShopAdmin = () => {
                                             <i className="fa-solid fa-plus mx-auto w-11/12" />
                                         </button>
                                     </div>
+                                </div>
+                                <div className="produc-size__object-items bg-cyan-500 w-12 h-12 mx-auto mb-2 min-w-min p-2 rounded-full justify-self-end flex justify-center items-center">
+                                    <i 
+                                        className="fa-solid fa-trash-can"
+                                        onClick={() => {
+                                            setTempId(product._id)
+                                            deleteProduct()}} />
                                 </div>
                             </div>
                         )

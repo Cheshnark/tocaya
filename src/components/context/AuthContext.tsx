@@ -8,6 +8,7 @@ interface ContextInterface {
   dispatch: React.Dispatch<Object>;
   email: string;
   token: string;
+  admin: string | null;
 }
 
 export const AuthContext = createContext<ContextInterface | null>(null)
@@ -29,7 +30,7 @@ export const AuthContextProvider = ({children}:any) => {
     })
 
     useEffect(() => {
-        const admin = JSON.parse(localStorage.getItem('admin'))
+        const admin = JSON.parse(localStorage.getItem('admin') as string)
 
         if(admin) {
             dispatch({type: 'LOGIN', payload: admin})

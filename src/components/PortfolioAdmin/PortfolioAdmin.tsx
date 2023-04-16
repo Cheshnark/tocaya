@@ -151,7 +151,7 @@ const PortfolioAdmin = () => {
             <form action="submit" className="p-4 flex flex-col justify-center">
                 {data.map(section => {
                     return (
-                        <div className="portfolio-admin-section">
+                        <div className="portfolio-admin-section" key={section._id}>
                             {showName ? (
                                 <div className="portfolio-admin-section__name flex justify-center py-4">
                                     <h3 className="text-2xl mx-4">{section.name}</h3>
@@ -188,7 +188,7 @@ const PortfolioAdmin = () => {
                                 {section.images.length > 0 &&
                                 section.images.map(image => {
                                     return (
-                                    <div className="portfolio-admin-section-container flex justify-center gap-4">
+                                    <div className="portfolio-admin-section-container flex justify-center gap-4" key={image._id}>
                                         <img 
                                             src={`http://localhost:8000/images/portfolio/${image.filename}`} 
                                             alt="portfolio image" 
