@@ -12,10 +12,11 @@ interface Image {
 }
 interface Section {
   _id: string;
-  name?: string;
-  images?: Array<string>;
+  name: string;
+  images: Array<string>;
   description?: string;
-  profilePicture: Image
+  profilePicture: Image;
+  type: "section";
   
 }
 
@@ -25,11 +26,19 @@ interface Product {
   productDescription: string;
   productInnerDescription: string;
   images: Array<Image>;
-  _id:string
+  _id:string;
+  type: "product";
+}
+
+interface Profile {
+  _id: string;
+  name: string;
+  description: string;
+  profilePicture: Image;
 }
 
 export function useFetch(url:string) {
-  const [data, setData] = useState< null | Array<Section> | Array<Product>>()
+  const [data, setData] = useState< null | Array<Section> | Array<Product> | Array<Profile>>()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [controller, setController] = useState<AbortController | null>(null)

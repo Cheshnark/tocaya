@@ -117,8 +117,6 @@ const PortfolioAdmin = () => {
 
     const updateSectionName = async () => {
         const data = {name: tempSectionName, id:tempId}
-        console.log(data);
-        
 
         const response = await fetch('http://localhost:8000/portfolio/section/', {
             method: 'PATCH',

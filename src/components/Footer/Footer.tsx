@@ -14,31 +14,30 @@ const Footer = () => {
                 <div className="contact-info w-10/12 mx-auto flex flex-col justify-center gap-8 text-justify">
                     <div className="social">
                         <figure className="social-icons flex justify-center align-middle gap-8">
-                            <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
-                                <a href="https://www.instagram.com/tocayavazquez/">
+                            <div className="social-icon__bg w-12 h-12 hover:scale-105 transition-all">
+                                <a href="https://www.instagram.com/tocayavazquez/" target="_blank">
                                     <img src={instagramLogo} alt="Instagram logo" />
                                 </a>
                             </div>
-                            <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
-                                <a href="https://www.behance.net/veronicavazquez8">
+                            <div className="social-icon__bg w-12 h-12 hover:scale-105 transition-all">
+                                <a href="https://www.behance.net/veronicavazquez8" target="_blank">
                                     <img src={behanceLogo} alt="Behance logo" />
                                 </a>
                             </div>
-                            <div className="social-icon__bg w-12 h-12 rounded-full hover:text-white hover:scale-105 transition-all">
-                                <a href="https://www.linkedin.com/in/tocayavazquez/">
+                            <div className="social-icon__bg w-12 h-12 hover:scale-105 transition-all">
+                                <a href="https://www.linkedin.com/in/tocayavazquez/" target="_blank">
                                     <img src={linkedinLogo} alt="Linkedin logo" />
                                 </a>
                             </div>
-                            <div className="social-icon__bg w-12 h-12 bg-red-400 rounded-full hover:text-white hover:scale-105 transition-all">
-                                <a href="https://ko-fi.com/">
+                            <div className="social-icon__bg w-12 h-12 hover:scale-105 transition-all">
+                                <a href="https://ko-fi.com/tocayavazquez" target="_blank">
                                     <img src={kofiLogo} alt="Kofi logo" />
                                 </a>
                             </div>
                         </figure>
                     </div>
                     <div>
-                        <p>Si tienes alguna propuesta de trabajo o quieres saber algo más sobre mí, escríbeme un 
-                            email a:
+                        <p>Si tienes alguna propuesta de trabajo, colaboración, comentario y/o salseo, por favor ponte en contacto conmigo, estaré encantada de atenderte. 
                             <br /><br />
                         </p>
                         <p className="text-center text-red-400 hover:text-red-500 hover:scale-105 transition-all" >

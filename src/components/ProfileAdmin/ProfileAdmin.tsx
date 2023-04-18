@@ -95,10 +95,10 @@ const ProfileAdmin = () => {
                                     name="profilePicture" 
                                     id="profile-picture" 
                                     className='w-8/12' 
-                                    onChange={(e) => {
+                                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
                                         setTempProfile({
                                             ...tempProfile,
-                                            profilePicture: e.target.files[0]})}} />
+                                            profilePicture: e.target.files?.[0]})}} />
                                 <i className="fa-solid fa-xmark hover:cursor-pointer" onClick={() => setShowImage(true)}/>
                             </div>
                         )}  

@@ -18,11 +18,11 @@ const Portfolio = () => {
         {loading && <div className="portfolio-loading">Loading...</div> }
         {data &&
         <main className="portfolio mb-8">
-            <h2 className="text-6xl p-4 text-center">Portfolio</h2>
+            <h2 className="text-5xl p-4 text-center">Portfolio</h2>
             <header className="hidden md:flex justify-center gap-8 pb-4">
                 {data.map((section, i) => {
                     return <h3 
-                        className='text-4xl text-center hover:cursor-pointer hover:scale-105 hover:text-red-400 transition-all' 
+                        className='text-3xl text-center hover:cursor-pointer hover:scale-105 hover:text-red-400 transition-all' 
                         onClick={() => setVisibleSection(i + 1)}
                         key={section._id} >
                             {section.name} </h3>

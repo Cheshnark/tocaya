@@ -85,8 +85,7 @@ const Calendar = () => {
                 >
                   <button
                     type="button"
-                    onClick={(e) => {        
-                      console.log(e.target.dateTime)              
+                    onClick={(e) => {                   
                       if(!isPast(day) && differenceInCalendarDays(day, today) > 6) {
                         setSelectedDay(day)
                       }else if(!isPast(day)) {

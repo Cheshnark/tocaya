@@ -60,7 +60,7 @@ const ProductForm = ({product}:Props) => {
             {product && 
             <>
             <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
-            <h3 className="mt-4 text-4xl">{product.productInnerTitle}</h3>
+            <h3 className="mt-4 text-3xl">{product.productInnerTitle}</h3>
             <p className='text-justify'>{product.productInnerDescription}</p>
             <label htmlFor="size">Tamaño</label>
             <select name="tamaño" id="size" className="w-6/12 mx-auto rounded-lg bg-green-50">

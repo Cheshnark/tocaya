@@ -8,7 +8,10 @@ interface ContextInterface {
   dispatch: React.Dispatch<Object>;
   email: string;
   token: string;
-  admin: string | null;
+  admin: {
+    email: string;
+    token: string;
+  };
 }
 
 export const AuthContext = createContext<ContextInterface | null>(null)
