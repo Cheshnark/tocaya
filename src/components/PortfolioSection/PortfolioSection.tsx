@@ -14,8 +14,8 @@ interface Images {
 
 interface Props {
     collection:{
-        images:Images[],
-        name:String
+        images:Images[];
+        name:String;
     }
 }
 

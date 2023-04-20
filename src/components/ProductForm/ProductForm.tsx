@@ -31,7 +31,7 @@ const ProductForm = ({product}:Props) => {
     const [showWarning, setShowWarning] = useState(false)
     const [showFileField, setShowFileField] = useState(false)
     
-    const colorPick = (e:any) => {
+    const colorPick = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault()
 
         setColor(e.target.value)
@@ -46,7 +46,7 @@ const ProductForm = ({product}:Props) => {
         }
     }
 
-    const fileField = (e:any) => {
+    const fileField = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         setShowFileField(!showFileField)
     }

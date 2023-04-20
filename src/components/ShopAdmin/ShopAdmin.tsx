@@ -7,6 +7,34 @@ import ShopImageInput from '../ShopImageInput/ShopImageInput';
 import ShopSizeInput from '../ShopSizeInput/ShopSizeInput';
 import ShopBackgroundInput from '../ShopBackgroundInput/ShopBackgroundInput';
 
+interface Image {
+    _id: string;
+    destination: string;
+    encoding: string;
+    fieldname: string;
+    filename: string;
+    mimetype: string;
+    originalname: string;
+    path: string;
+    size: number
+  }
+
+interface Background {
+    name: string;
+    hex: string;
+    _id: string
+}
+interface Product {
+    _id: string;
+    productTitle: string;
+    productDescription: string;
+    size: string[];
+    images: Image[];
+    backgroundColor: Background[];
+    productInnerTitle: string;
+    productInnerDescription: string;
+}
+
 const ShopAdmin = () => {
     const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
     const { admin } = useAuthContext()
@@ -22,7 +50,7 @@ const ShopAdmin = () => {
 
     const [tempProductName, setTempProductName] = useState("")    
     const [tempId, setTempId] = useState("")
-    const [tempPicture, setTempPicture] = useState()
+    const [tempPicture, setTempPicture] = useState<Blob>()
     const [tempInnerTitle, setTempInnerTitle] = useState("")
     const [tempProductDescription, setTempProductDescription] = useState("")
     const [tempInnerDescription, setTempInnerDescription] = useState("")
@@ -48,7 +76,7 @@ const ShopAdmin = () => {
             console.log(json.error)
         }else if(response.ok){
             setShowNameInput(false)
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setTempProductName("")
             console.log('Product created correctly', json.profile)
         }
@@ -72,13 +100,13 @@ const ShopAdmin = () => {
             console.log(json.error)
         }else if(response.ok){
             setShowNameInput(false)
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setTempProductName("")
             console.log('Product created correctly', json.profile)
         }
     }
 
-    const deletePicture = async (pictureId:any) => {
+    const deletePicture = async (pictureId:string) => {
         const data = {filename: pictureId, id:tempId}
 
         const response = await fetch('http://localhost:8000/shop/product/image', {
@@ -95,7 +123,7 @@ const ShopAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             console.log('Image deleted correctly', json.profile)
         }   
     }
@@ -103,7 +131,9 @@ const ShopAdmin = () => {
     const addProductPicture = async (sectionId:string) => {        
         const formData = new FormData();
         formData.append('_id', sectionId)
+        if(tempPicture != undefined){
         formData.append('productPicture', tempPicture)
+        }
 
         const response = await fetch('http://localhost:8000/shop/product', {
             method: 'PATCH',
@@ -120,7 +150,7 @@ const ShopAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setShowImageInput(false)
             console.log('Picture added correctly', json.profile)
         }
@@ -172,7 +202,7 @@ const ShopAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             switch (section) {
                 case "title":
                     setTempProductName("")
@@ -228,7 +258,7 @@ const ShopAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             if(section === "size") {
                 setTempSize("")
                 setShowSizeInput(false)
@@ -263,7 +293,7 @@ const ShopAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             console.log('Image deleted correctly', json.profile)
         }   
     }
@@ -277,7 +307,7 @@ const ShopAdmin = () => {
                 {error && <div>Error:{error}</div>}
                 {loading && <div>Loading...</div> }
                 {data &&
-                    data.map(product => {
+                    data.map((product:Product) => {
                         return(
                             <div className="shop-admin__product bg-zinc-200 p-4 mb-4 flex flex-col justify-center" key={product._id}>
                                 {showProductName ? (
@@ -319,7 +349,7 @@ const ShopAdmin = () => {
                                         <label>Product description</label>
                                         <p className="mx-4 text-justify">{product.productDescription}</p>
                                         <i 
-                                            className="fa-solid fa-pen" 
+                                            className="fa-solid fa-pen hover:cursor-pointer" 
                                             onClick={() => {
                                                 setTempProductDescription(product.productDescription)
                                                 setTempId(product._id)
@@ -383,7 +413,7 @@ const ShopAdmin = () => {
                                         <label>Inner product description</label>
                                         <p className="mx-4 text-justify">{product.productInnerDescription}</p>
                                         <i 
-                                            className="fa-solid fa-pen" 
+                                            className="fa-solid fa-pen hover:cursor-pointer" 
                                             onClick={() => {
                                                 setTempInnerDescription(product.productInnerDescription)
                                                 setTempId(product._id)

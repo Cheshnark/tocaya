@@ -4,11 +4,21 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 
 import PortfolioNameInput from '../PortfolioNameInput/PortfolioNameInput'
 import PortfolioImageInput from '../PortfolioImageInput/PortfolioImageInput'
-
+interface Image {
+    _id: string;
+    destination: string;
+    encoding: string;
+    fieldname: string;
+    filename: string;
+    mimetype: string;
+    originalname: string;
+    path: string;
+    size: number
+  }
 interface PortfolioSection {
     _id:string
     name:string,
-    images:string[]
+    images:Image[]
 }
 
 const PortfolioAdmin = () => {
@@ -17,7 +27,7 @@ const PortfolioAdmin = () => {
     const [showNameInput, setShowNameInput] = useState(false)
     const [showImageInput, setShowImageInput] = useState(false)
     const [tempSectionName, setTempSectionName] = useState("")
-    const [tempPicture, setTempPicture] = useState()
+    const [tempPicture, setTempPicture] = useState<File | undefined>()
     const [tempId, setTempId] = useState("")
     const { admin } = useAuthContext()
 
@@ -41,7 +51,7 @@ const PortfolioAdmin = () => {
             console.log(json.error)
         }else if(response.ok){
             setShowNameInput(false)
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setTempSectionName("")
             console.log('Section created correctly', json.profile)
         }
@@ -65,7 +75,7 @@ const PortfolioAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             console.log('Section deleted correctly', json.profile)
         }
 
@@ -74,7 +84,9 @@ const PortfolioAdmin = () => {
     const addPicture = async (sectionId:string) => {        
         const formData = new FormData();
         formData.append('_id', sectionId)
-        formData.append('portfolioImage', tempPicture)
+        if(tempPicture){
+            formData.append('portfolioImage', tempPicture)
+        }
 
         const response = await fetch('http://localhost:8000/portfolio/section/image', {
             method: 'PATCH',
@@ -87,13 +99,13 @@ const PortfolioAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setShowImageInput(false)
             console.log('Picture added correctly', json.profile)
         }
     }
 
-    const deletePicture = async (pictureId:any) => {
+    const deletePicture = async (pictureId:string) => {
         const data = {filename: pictureId, id:tempId}
 
         const response = await fetch('http://localhost:8000/portfolio/section/image', {
@@ -110,7 +122,7 @@ const PortfolioAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             console.log('Image deleted correctly', json.profile)
         }   
     }
@@ -132,7 +144,7 @@ const PortfolioAdmin = () => {
         if(!response.ok){
             console.log(json.error)
         }else if(response.ok){
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setShowName(true)
             console.log('Section name updated correctly', json.profile)
         }   
@@ -147,7 +159,7 @@ const PortfolioAdmin = () => {
             {error && <div>Error:{error}</div> }
             {data && 
             <form action="submit" className="p-4 flex flex-col justify-center">
-                {data.map(section => {
+                {data.map((section:PortfolioSection) => {
                     return (
                         <div className="portfolio-admin-section" key={section._id}>
                             {showName ? (

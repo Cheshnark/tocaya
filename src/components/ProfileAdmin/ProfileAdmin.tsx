@@ -26,7 +26,7 @@ const ProfileAdmin = () => {
         }
       },[])
 
-    const handleSubmit = async (e:any) => {        
+    const handleSubmit = async (e:React.FormEvent) => {        
         e.preventDefault()
         const formData = new FormData();
         formData.append('id', data[0]._id)
@@ -55,7 +55,7 @@ const ProfileAdmin = () => {
             setShowImage(true)
             setShowName(true)
             setShowDescription(true)
-            setHasChanged(!hasChanged)
+            if(setHasChanged)setHasChanged(!hasChanged)
             setTempProfile({
                 name: data ? data[0].name : "",
                 description: data ? data[0].description : "",
@@ -138,7 +138,7 @@ const ProfileAdmin = () => {
                         <label className='font-semibold'>Sobre mí: </label>
                         {showDescription ? (
                             <div className='flex items-center gap-4 max-w-xl'>
-                                <p className='text-justify'>{data[0].description}</p>
+                                <p className='text-justify whitespace-pre-line'>{data[0].description}</p>
                                 <i 
                                     className="fa-solid fa-pen hover:cursor-pointer" 
                                     onClick={() => {

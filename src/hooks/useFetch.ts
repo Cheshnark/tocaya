@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { T } from "vitest/dist/types-7cd96283";
 
 interface Image {
   destination: string;
@@ -13,13 +14,9 @@ interface Image {
 interface Section {
   _id: string;
   name: string;
-  images: Array<string>;
-  description?: string;
-  profilePicture: Image;
+  images: Image[];
   type: "section";
-  
 }
-
 interface Product {
   productTitle: string;
   productInnerTitle: string;
@@ -29,20 +26,28 @@ interface Product {
   _id:string;
   type: "product";
 }
-
 interface Profile {
   _id: string;
   name: string;
   description: string;
   profilePicture: Image;
 }
+interface State<T> {
+  data?: any;
+  loading?: boolean;
+  error?: string | null;
+  controller?: AbortController;
+  hasChanged: boolean;
+  setHasChanged?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleCancelRequest: () => void
+}
 
-export function useFetch(url:string) {
-  const [data, setData] = useState< null | Array<Section> | Array<Product> | Array<Profile>>()
+export function useFetch(url:string): State<T> {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [controller, setController] = useState<AbortController | null>(null)
-  const [hasChanged, setHasChanged] = useState(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   useEffect(() => {
     const abortController = new AbortController()

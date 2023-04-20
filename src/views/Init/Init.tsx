@@ -16,9 +16,7 @@ const Init = () => {
             <img src={tocaya} alt="Tocaya Vazquez - Ilustración" className='w-10/12 md:w-6/12 mx-auto md:row-start-1 md:col-span-2 md:self-end'/>
             <div className='md:self-center hover:scale-105 transition-all'>
                 <Link to={"/sobre-mi"}>
-                    <button>
-                        <img src={sobreMi} alt="Botón sobre mi" className='w-7/12 mx-auto'/>
-                    </button>
+                    <img src={sobreMi} alt="Botón sobre mi" className='w-7/12 mx-auto'/>
                 </Link>
             </div>
         </header>

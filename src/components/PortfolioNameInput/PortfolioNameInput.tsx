@@ -2,7 +2,7 @@ interface Props {
     tempSectionName: string,
     setTempSectionName: React.Dispatch<React.SetStateAction<string>>,
     setShowNameInput: React.Dispatch<React.SetStateAction<boolean>>,
-    createSection: (e:any) => void
+    createSection: (e:React.MouseEvent<HTMLInputElement>) => void
 }
 
 const PortfolioNameInput = (props:Props) => {

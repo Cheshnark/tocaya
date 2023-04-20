@@ -1,5 +1,5 @@
 interface Props {
-    setTempPicture: React.Dispatch<React.SetStateAction<undefined>>,
+    setTempPicture: React.Dispatch<React.SetStateAction<File | undefined>>,
     setShowImageInput: React.Dispatch<React.SetStateAction<boolean>>,
     addPicture: (sectionId:string) => void,
     tempId: string
@@ -23,8 +23,8 @@ const PortfolioImageInput = (props:Props) => {
                         name='portfolioImage' 
                         autoComplete="off"
                         className='w-6/12 outline-none p-2 rounded-md bg-white' 
-                        onChange={(e:any) => {
-                            setTempPicture(e.target.files[0])
+                        onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                            setTempPicture(e.target.files?.[0])
                         }}
                         />
                     <i 

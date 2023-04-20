@@ -4,7 +4,35 @@ import { useFetch } from '../../hooks/useFetch';
 import NavBar from "../../components/NavBar/NavBar"
 import ImageDisplayer from '../../components/ImageDisplayer/ImageDisplayer';
 import Footer from "../../components/Footer/Footer"
+import Product from '../Product/Product';
 
+interface Image {
+    _id: string;
+    destination: string;
+    encoding: string;
+    fieldname: string;
+    filename: string;
+    mimetype: string;
+    originalname: string;
+    path: string;
+    size: number
+  }
+
+interface Background {
+    name: string;
+    hex: string;
+    _id: string
+}
+interface Product {
+    _id: string;
+    productTitle: string;
+    productDescription: string;
+    size: string[];
+    images: Image[];
+    backgroundColor: Background[];
+    productInnerTitle: string;
+    productInnerDescription: string;
+}
 
 const Shop = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/shop")
@@ -17,7 +45,7 @@ const Shop = () => {
                 {error && <div className="shop-error">{error}</div> }
                 {loading && <div className="shop-loading">Loading...</div> }
                 {data && 
-                    data.map(product => {
+                    data.map((product:Product) => {
                         return (
                         <div className="shop-container" key={product._id}>
                             <ImageDisplayer images={product.images}/>
