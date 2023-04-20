@@ -311,8 +311,8 @@ const ShopAdmin = () => {
                         return(
                             <div className="shop-admin__product bg-zinc-200 p-4 mb-4 flex flex-col justify-center" key={product._id}>
                                 {showProductName ? (
-                                    <div className="product-title flex justify-start items-center mb-4">
-                                        <label>Product title</label>
+                                    <div className="product-title flex justify-center items-center mb-4">
+                                        <label className='font-bold'>Product title</label>
                                         <h3 className="text-2xl mx-4">{product.productTitle}</h3>
                                         <div className="product-name__items flex justify-around items-center gap-2">
                                             <i 
@@ -326,7 +326,7 @@ const ShopAdmin = () => {
                                         </div>
                                     </div>
                                 ):(
-                                    <div className="product-title flex justify-start mb-4 gap-4 ">
+                                    <div className="product-title flex justify-center mb-4 gap-4 ">
                                         <input 
                                             type="text" 
                                             name='product-title'
@@ -345,9 +345,9 @@ const ShopAdmin = () => {
                                     </div>
                                 )}
                                 {showDescription ? (
-                                    <div className="product-description flex justify-start items-center mb-4">
-                                        <label>Product description</label>
-                                        <p className="mx-4 text-justify">{product.productDescription}</p>
+                                    <div className="product-description flex justify-center items-center mb-4">
+                                        <label className='font-bold'>Product description</label>
+                                        <p className="mx-4 text-justify whitespace-pre-line">{product.productDescription}</p>
                                         <i 
                                             className="fa-solid fa-pen hover:cursor-pointer" 
                                             onClick={() => {
@@ -357,7 +357,7 @@ const ShopAdmin = () => {
                                             }}/>
                                     </div>
                                 ):(
-                                    <div className="product-description flex justify-start mb-4 gap-4 ">
+                                    <div className="product-description flex justify-center mb-4 gap-4 ">
                                         <textarea 
                                             name="product-description" 
                                             cols={30} rows={5}
@@ -376,8 +376,8 @@ const ShopAdmin = () => {
                                     </div>
                                 )}
                                 {showInnerTitle ? (
-                                    <div className="product-inner-title flex justify-start mb-4">
-                                        <label>Product inner title</label>
+                                    <div className="product-inner-title flex justify-center mb-4">
+                                        <label className='font-bold'>Product inner title</label>
                                         <h3 className="text-2xl mx-4">{product.productInnerTitle}</h3>
                                         <div className="product-inner-title__items flex justify-around items-center gap-2">
                                             <i 
@@ -390,7 +390,7 @@ const ShopAdmin = () => {
                                         </div>
                                     </div>
                                 ):(
-                                    <div className="product-inner-title flex justify-start mb-4 gap-4 ">
+                                    <div className="product-inner-title flex justify-center mb-4 gap-4 ">
                                         <input 
                                             type="text" 
                                             name='product-inner-title'
@@ -409,9 +409,9 @@ const ShopAdmin = () => {
                                     </div>
                                 )}
                                 {showInnerDescription ? (
-                                    <div className="product-inner-description flex justify-start items-center mb-4">
-                                        <label>Inner product description</label>
-                                        <p className="mx-4 text-justify">{product.productInnerDescription}</p>
+                                    <div className="product-inner-description flex justify-center items-center mb-4">
+                                        <label className='font-bold'>Inner product description</label>
+                                        <p className="mx-4 text-justify whitespace-pre-line">{product.productInnerDescription}</p>
                                         <i 
                                             className="fa-solid fa-pen hover:cursor-pointer" 
                                             onClick={() => {
@@ -421,7 +421,7 @@ const ShopAdmin = () => {
                                             }}/>
                                     </div>
                                 ):(
-                                    <div className="product-inner-description flex justify-start mb-4 gap-4 ">
+                                    <div className="product-inner-description flex justify-center mb-4 gap-4 ">
                                         <textarea 
                                             name='product-inner-description'
                                             cols={30} rows={5}
@@ -439,8 +439,8 @@ const ShopAdmin = () => {
                                         </div>
                                     </div>
                                 )}
-                                <div className="product-images flex flex-col justify-center gap-2 mb-4 p-2 ">
-                                    <h3 className='text-center text-2xl'>Imagenes</h3>
+                                <h3 className='text-center text-2xl font-bold'>Imagenes</h3>
+                                <div className="product-images flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-x-8 mx-auto justify-center items-center gap-2 mb-4 p-2 ">
                                     {product.images.length > 0 &&
                                     product.images.map(image => {
                                         return (
@@ -467,7 +467,7 @@ const ShopAdmin = () => {
                                         <i className="fa-solid fa-plus mx-auto w-11/12" />
                                     </button>
                                 </div>
-                                <div className="product-collapsables flex justify-around p-4 mb-8">
+                                <div className="product-collapsables flex justify-around xl:justify-center xl:gap-16 p-4 mb-8">
                                     <div className="product-size w-60 flex flex-col">
                                         <h4 className="text-center mb-4">Tamaño del producto</h4>
                                         {product.size.map((s, i) => {
@@ -476,7 +476,7 @@ const ShopAdmin = () => {
                                                     <p className="ml-4">{s}</p>
                                                     <div className="produc-size__object-items">
                                                         <i 
-                                                            className="fa-solid fa-trash-can"
+                                                            className="fa-solid fa-trash-can hover:cursor-pointer"
                                                             onClick={() => {
                                                                 setTempId(product._id)
                                                                 deleteItem(s, "size")}} />
@@ -502,7 +502,7 @@ const ShopAdmin = () => {
                                                     <p className="ml-4">{background.hex}</p>
                                                     <div className="produc-background__object-items">
                                                         <i 
-                                                            className="fa-solid fa-trash-can"
+                                                            className="fa-solid fa-trash-can hover:cursor-pointer"
                                                             onClick={() => { 
                                                                 setTempId(product._id)
                                                                 deleteItem(background.name, "background")}}/>
@@ -520,12 +520,12 @@ const ShopAdmin = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="produc-size__object-items bg-cyan-500 w-12 h-12 mx-auto mb-2 min-w-min p-2 rounded-full justify-self-end flex justify-center items-center">
-                                    <i 
-                                        className="fa-solid fa-trash-can"
-                                        onClick={() => {
-                                            setTempId(product._id)
-                                            deleteProduct()}} />
+                                <div 
+                                    className="produc-size__object-items bg-cyan-500 w-12 h-12 mx-auto mb-2 min-w-min p-2 rounded-full justify-self-end flex justify-center items-center hover:cursor-pointer"
+                                    onClick={() => {
+                                        setTempId(product._id)
+                                        deleteProduct()}} >
+                                    <i className="fa-solid fa-trash-can" />
                                 </div>
                             </div>
                         )

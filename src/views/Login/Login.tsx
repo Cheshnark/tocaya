@@ -17,7 +17,7 @@ const Login = () => {
             <h2 className="text-center text-3xl p-2">Login</h2>
             <form 
                 onSubmit={handleSubmit} 
-                className="flex flex-col justify-center items-center w-10/12 px-2 py-6 mx-auto bg-slate-200 rounded">
+                className="flex flex-col justify-center items-center w-10/12 max-w-sm px-2 py-6 mx-auto bg-slate-200 rounded">
                 <label className="mb-1 w-6/12">Email</label>
                 <input 
                     type="email"

@@ -1,7 +1,9 @@
 import './App.css'
 import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 
 import Main from '../views/Main/Main';
 import Portfolio from '../views/Portfolio/Portfolio';
@@ -13,8 +15,14 @@ import NotFound from '../views/NotFound/NotFound';
 import ThankYou from '../views/ThankYou/ThankYou';
 import Init from '../views/Init/Init';
 
+
 function App() {
   const { admin } = useAuthContext()
+  const { logout } = useLogout();
+
+  useEffect(() => {
+    logout()
+  },[])
 
   return (
     <Router>

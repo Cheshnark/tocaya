@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import { useLogout } from '../../hooks/useLogout'
 
 const ProfileAdmin = () => {
     const [showImage, setShowImage] = useState(true)
@@ -9,7 +8,6 @@ const ProfileAdmin = () => {
     const [showDescription, setShowDescription] = useState(true)
     const [changed, setChanged] = useState(false)
     const { admin } = useAuthContext()
-    const { logout } = useLogout()
 
     const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
 
@@ -19,12 +17,6 @@ const ProfileAdmin = () => {
         profilePicture: data ? data[0].profilePicture : undefined
     })
     const [oldFile, setOldFile] = useState("")
-
-    useEffect(() => {    
-        if(!admin) {
-          logout()
-        }
-      },[])
 
     const handleSubmit = async (e:React.FormEvent) => {        
         e.preventDefault()
@@ -75,7 +67,7 @@ const ProfileAdmin = () => {
                 {loading && <div>Loading...</div> }
                 {data && 
                 <form onSubmit={handleSubmit} className="bg-zinc-200 mb-4 p-4 flex flex-col gap-2">
-                    <div className="profile-image flex flex-wrap gap-2 justify-center sm:justify-start">
+                    <div className="profile-image flex flex-wrap gap-2 justify-center">
                         {showImage ? (
                             <div className='flex gap-4 items-center'>
                                 <img 
@@ -103,8 +95,8 @@ const ProfileAdmin = () => {
                             </div>
                         )}  
                     </div>
-                    <div className="profile-name flex flex-col sm:flex-row flex-wrap gap-2 items-center sm:justify-start">
-                        <label className='font-semibold'>Nombre: </label>
+                    <div className="profile-name flex flex-col sm:flex-row flex-wrap gap-2 items-center mx-auto">
+                        <label className='font-bold'>Nombre: </label>
                         {showName ? (
                             <div className='flex gap-4'>
                                 <p>{data[0].name}</p>
@@ -134,8 +126,8 @@ const ProfileAdmin = () => {
                             </div>
                         )}                        
                     </div>
-                    <div className="profile-about flex flex-wrap gap-2 justify-center sm:justify-start">
-                        <label className='font-semibold'>Sobre mí: </label>
+                    <div className="profile-about flex flex-wrap gap-2 justify-center">
+                        <label className='font-bold'>Sobre mí: </label>
                         {showDescription ? (
                             <div className='flex items-center gap-4 max-w-xl'>
                                 <p className='text-justify whitespace-pre-line'>{data[0].description}</p>

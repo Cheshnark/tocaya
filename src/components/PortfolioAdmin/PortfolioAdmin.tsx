@@ -194,7 +194,7 @@ const PortfolioAdmin = () => {
                                     </div>
                                 </div>
                             )}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8 bg-zinc-200"> 
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-4 p-8 bg-zinc-200"> 
                                 {section.images.length > 0 &&
                                 section.images.map(image => {
                                     return (
