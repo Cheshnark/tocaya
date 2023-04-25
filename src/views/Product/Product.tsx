@@ -9,7 +9,7 @@ import ProductForm from '../../components/ProductForm/ProductForm'
 
 const Product = () => {
     const { id } = useParams()
-    const {data, loading, error} = useFetch(`http://localhost:8000/shop/${id}`)
+    const {data, loading, error} = useFetch(`https://tocaya-server-production.up.railway.app/shop/${id}`)
 
     return (
         <main className="product">

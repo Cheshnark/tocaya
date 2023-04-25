@@ -35,7 +35,7 @@ interface Product {
 }
 
 const Shop = () => {
-    const {data, loading, error} = useFetch("http://localhost:8000/shop")
+    const {data, loading, error} = useFetch("https://tocaya-server-production.up.railway.app/shop")
 
     return (
         <>

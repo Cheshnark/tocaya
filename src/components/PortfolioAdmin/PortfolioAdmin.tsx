@@ -22,7 +22,7 @@ interface PortfolioSection {
 }
 
 const PortfolioAdmin = () => {
-    const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/portfolio") 
+    const {data, loading, error, hasChanged, setHasChanged} = useFetch("https://tocaya-server-production.up.railway.app/portfolio") 
     const [showName, setShowName] = useState(true)
     const [showNameInput, setShowNameInput] = useState(false)
     const [showImageInput, setShowImageInput] = useState(false)
@@ -36,7 +36,7 @@ const PortfolioAdmin = () => {
         
         const data = {name:tempSectionName}
 
-        const response = await fetch('http://localhost:8000/portfolio/section', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -61,7 +61,7 @@ const PortfolioAdmin = () => {
         
         const data = {id: section._id}
 
-        const response = await fetch('http://localhost:8000/portfolio/section', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section', {
             method: 'DELETE',
             body: JSON.stringify(data),
             headers: {
@@ -88,7 +88,7 @@ const PortfolioAdmin = () => {
             formData.append('portfolioImage', tempPicture)
         }
 
-        const response = await fetch('http://localhost:8000/portfolio/section/image', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section/image', {
             method: 'PATCH',
             body: formData,
             headers: {'Authorization': `Bearer ${admin.token}`}
@@ -108,7 +108,7 @@ const PortfolioAdmin = () => {
     const deletePicture = async (pictureId:string) => {
         const data = {filename: pictureId, id:tempId}
 
-        const response = await fetch('http://localhost:8000/portfolio/section/image', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section/image', {
             method: 'DELETE',
             body: JSON.stringify(data),
             headers: {
@@ -130,7 +130,7 @@ const PortfolioAdmin = () => {
     const updateSectionName = async () => {
         const data = {name: tempSectionName, id:tempId}
 
-        const response = await fetch('http://localhost:8000/portfolio/section/', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section/', {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: {
@@ -200,7 +200,7 @@ const PortfolioAdmin = () => {
                                     return (
                                     <div className="portfolio-admin-section-container flex justify-center gap-4" key={image._id}>
                                         <img 
-                                            src={`http://localhost:8000/images/portfolio/${image.filename}`} 
+                                            src={`https://tocaya-server-production.up.railway.app/images/portfolio/${image.filename}`} 
                                             alt="portfolio image" 
                                             className="max-w-sm w-11/12"/>
                                         <div className="portfolio-name__items flex justify-around items-center gap-2">

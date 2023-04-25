@@ -36,7 +36,7 @@ interface Product {
 }
 
 const ShopAdmin = () => {
-    const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/shop")
+    const {data, loading, error, hasChanged, setHasChanged} = useFetch("https://tocaya-server-production.up.railway.app/shop")
     const { admin } = useAuthContext()
     
     const [showNameInput, setShowNameInput] = useState(false)
@@ -61,7 +61,7 @@ const ShopAdmin = () => {
     const createProduct = async () => {
         const data = {productTitle:tempProductName}
 
-        const response = await fetch('http://localhost:8000/shop/product', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -85,7 +85,7 @@ const ShopAdmin = () => {
     const deleteProduct = async () => {
         const data = {id:tempId}
         
-        const response = await fetch('http://localhost:8000/shop/product', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product', {
             method: 'DELETE',
             body: JSON.stringify(data),
             headers: {
@@ -109,7 +109,7 @@ const ShopAdmin = () => {
     const deletePicture = async (pictureId:string) => {
         const data = {filename: pictureId, id:tempId}
 
-        const response = await fetch('http://localhost:8000/shop/product/image', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product/image', {
             method: 'DELETE',
             body: JSON.stringify(data),
             headers: {
@@ -135,7 +135,7 @@ const ShopAdmin = () => {
         formData.append('productPicture', tempPicture)
         }
 
-        const response = await fetch('http://localhost:8000/shop/product', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product', {
             method: 'PATCH',
             body: formData,
             headers: {
@@ -188,7 +188,7 @@ const ShopAdmin = () => {
                 break;
         }
 
-        const response = await fetch('http://localhost:8000/shop/product', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product', {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: {
@@ -244,7 +244,7 @@ const ShopAdmin = () => {
             }
         }
 
-        const response = await fetch('http://localhost:8000/shop/product', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product', {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: {
@@ -279,7 +279,7 @@ const ShopAdmin = () => {
             data = {name: itemName, id:tempId,sectionName:section}
         }
 
-        const response = await fetch('http://localhost:8000/shop/product/item', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/shop/product/item', {
             method: 'DELETE',
             body: JSON.stringify(data),
             headers: {
@@ -447,7 +447,7 @@ const ShopAdmin = () => {
                                             <div 
                                                 className="product-image flex items-center gap-2 w-11/12 max-w-sm" key={image.filename}>
                                                 <img 
-                                                    src={`http://localhost:8000/images/shop/${image.filename}`} 
+                                                    src={`https://tocaya-server-production.up.railway.app/images/shop/${image.filename}`} 
                                                     alt="product-image"/>
                                                 <i 
                                                     className="fa-solid fa-trash-can hover:cursor-pointer" 

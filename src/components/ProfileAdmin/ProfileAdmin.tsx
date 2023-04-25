@@ -9,7 +9,7 @@ const ProfileAdmin = () => {
     const [changed, setChanged] = useState(false)
     const { admin } = useAuthContext()
 
-    const {data, loading, error, hasChanged, setHasChanged} = useFetch("http://localhost:8000/profile")
+    const {data, loading, error, hasChanged, setHasChanged} = useFetch("https://tocaya-server-production.up.railway.app/profile")
 
     const [tempProfile, setTempProfile] = useState({
         name: data ? data[0].name : "",
@@ -31,7 +31,7 @@ const ProfileAdmin = () => {
             formData.append('profilePicture', "");
         }
 
-        const response = await fetch('http://localhost:8000/profile', {
+        const response = await fetch('https://tocaya-server-production.up.railway.app/profile', {
             method: 'PATCH',
             body: formData,
             headers: {
@@ -71,7 +71,7 @@ const ProfileAdmin = () => {
                         {showImage ? (
                             <div className='flex gap-4 items-center'>
                                 <img 
-                                    src={`http://localhost:8000/images/${data[0].profilePicture.filename}`} 
+                                    src={`https://tocaya-server-production.up.railway.app/images/${data[0].profilePicture.filename}`} 
                                     alt="profile picture"
                                     className='max-h-40 rounded-full' />
                                 <i 

@@ -48,7 +48,7 @@ const PortfolioSection = ({collection}:Props) => {
                 {collection.images.map((img,i) => {
                     return(
                         <img 
-                            src={`http://localhost:8000/images/portfolio/${collection.images[i].filename}`} 
+                            src={`https://tocaya-server-production.up.railway.app/images/portfolio/${collection.images[i].filename}`} 
                             alt="portfolio-image" 
                             key={collection.images[i]._id} 
                             className="justify-self-center"/>

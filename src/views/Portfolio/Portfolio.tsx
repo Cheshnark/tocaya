@@ -24,7 +24,7 @@ interface Section {
 
 const Portfolio = () => {
     const [visibleSection, setVisibleSection] = useState<number>(1)
-    const {data, loading, error} = useFetch("http://localhost:8000/portfolio")
+    const {data, loading, error} = useFetch("https://tocaya-server-production.up.railway.app/portfolio")
 
     document.body.style.overflow = "visible"
     

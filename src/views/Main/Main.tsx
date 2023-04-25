@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer'
 import kofiLogo from '../../images/kofilogo.png'
 
 const Main = () => {
-    const {data, loading, error} = useFetch("http://localhost:8000/profile")
+    const {data, loading, error} = useFetch("https://tocaya-server-production.up.railway.app/profile")
 
     return (
         <>
@@ -20,7 +20,7 @@ const Main = () => {
                     {data && 
                     <div className="about-me-container flex flex-col sm:flex-row sm:gap-8 justify-center align-middle">
                         <figure className='w-8/12 mx-auto'> 
-                            <img src={`http://localhost:8000/images/${data[0].profilePicture.filename}`} alt="" className='rounded-full mx-auto max-h-80'/>
+                            <img src={`https://tocaya-server-production.up.railway.app/images/${data[0].profilePicture.filename}`} alt="" className='rounded-full mx-auto max-h-80'/>
                         </figure>
                         <div className="about-me-content w-10/12 mt-4 mb-6 mx-auto flex flex-col">
                             <h3 className='text-3xl text-center'>{data[0].name}</h3>

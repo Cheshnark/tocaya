@@ -26,17 +26,17 @@ const ImageDisplayer = ({images}:Props) => {
         const filteredImage = images.filter((image) => { 
             return image._id === imageId    
         })
-        setMainImage(`http://localhost:8000/images/shop/${filteredImage[0].filename}`)
+        setMainImage(`https://tocaya-server-production.up.railway.app/images/shop/${filteredImage[0].filename}`)
     }
 
     return ( 
         <figure className="image-container w-10/12 mx-auto max-w-sm lg:max-w-md">
-            {mainImage !== "" ? <img src={mainImage} alt="main-image" /> : <img src={`http://localhost:8000/images/shop/${images[0].filename}`} alt="main-image" />}
+            {mainImage !== "" ? <img src={mainImage} alt="main-image" /> : <img src={`https://tocaya-server-production.up.railway.app/images/shop/${images[0].filename}`} alt="main-image" />}
             <div className="miniatures grid grid-flow-row grid-cols-3 max-w-full mt-4 gap-4 hover:cursor-pointer">
                 {images.map((image) => {
                     return(
                         <img 
-                            src={`http://localhost:8000/images/shop/${image.filename}`} 
+                            src={`https://tocaya-server-production.up.railway.app/images/shop/${image.filename}`} 
                             alt="perretes-img" 
                             id={image._id} 
                             onClick ={bigImage}
