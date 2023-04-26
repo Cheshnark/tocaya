@@ -21,7 +21,7 @@ const NavBar = () => {
                     <Link to='/portfolio' className='self-center hover:cursor-pointer hover:text-red-500 hover:scale-105 transition-all text-xl'><li className='mx-2'>Trabajos</li></Link>                   
                 </ul>
                 <figure className="navbar-logo w-4/12 2xl:max-w-lg">
-                    <Link to='/sobre-mi'>
+                    <Link to='/'>
                         <img src={tocaya} alt="Tocaya Vázquez logo" className='mx-auto max-h-40 hover:scale-105 transition-all'/>
                     </Link>
                 </figure>
@@ -32,7 +32,7 @@ const NavBar = () => {
             </div>
             <div className="navbar-container-mobile sm:hidden flex gap-4 items-center justify-between px-4">
                 <figure className="navbar-logo w-5/12">
-                    <Link to='/sobre-mi'>
+                    <Link to='/'>
                         <img src={tocaya} alt="Tocaya Vázquez logo" className='mx-auto'/>
                     </Link>
                 </figure>

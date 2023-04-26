@@ -1,0 +1,25 @@
+{
+  
+    "rewrites": [
+        {
+            "source":"/portfolio", 
+            "destination":"https://tocaya-vazquez.vercel.app/portfolio"
+        },
+        {
+            "source":"/tienda", 
+            "destination":"https://tocaya-vazquez.vercel.app/tienda"
+        },
+        {
+            "source":"/sobre-mi", 
+            "destination":"https://tocaya-vazquez.vercel.app/sobre-mi"
+        },
+        {
+            "source":"/admin", 
+            "destination":"https://tocaya-vazquez.vercel.app/admin"
+        },
+        {
+            "source":"/admin/login", 
+            "destination":"https://tocaya-vazquez.vercel.app/admin/login"
+        }
+      ]
+    }
