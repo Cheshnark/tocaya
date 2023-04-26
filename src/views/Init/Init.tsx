@@ -6,7 +6,7 @@ import gallery from '../../images/galeria.png'
 
 const Init = () => {
     return (
-        <header className="front h-screen w-screen min-h-full flex flex-col justify-evenly text-center bg-white fixed sm:grid md:grid-rows-3 lg:grid-rows-2 sm:justify-center">
+        <header className="front w-screen min-h-full flex flex-col justify-evenly text-center bg-white fixed sm:grid md:grid-rows-3 lg:grid-rows-2 sm:justify-center">
             <div className='md:self-center hover:scale-105 transition-all sm:row-start-3 lg:row-start-2 lg:self-start xl:mt-16' >
                 <Link to={"/portfolio"}>
                 <img src={gallery} alt="Botón galería" className='w-7/12 max-w-lg mx-auto'/>
