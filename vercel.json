@@ -1,25 +1,26 @@
 {
-  
+    "cleanUrls": true,
+    "trailingSlash":false,
     "rewrites": [
         {
             "source":"/portfolio", 
-            "destination":"https://tocaya-vazquez.vercel.app/portfolio"
+            "destination":"/"
         },
         {
             "source":"/tienda", 
-            "destination":"https://tocaya-vazquez.vercel.app/tienda"
+            "destination":"/"
         },
         {
             "source":"/sobre-mi", 
-            "destination":"https://tocaya-vazquez.vercel.app/sobre-mi"
+            "destination":"/"
         },
         {
             "source":"/admin", 
-            "destination":"https://tocaya-vazquez.vercel.app/admin"
+            "destination":"/"
         },
         {
             "source":"/admin/login", 
-            "destination":"https://tocaya-vazquez.vercel.app/admin/login"
+            "destination":"/"
         }
       ]
     }
