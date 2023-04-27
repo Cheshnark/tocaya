@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import {HashLink as Hash} from 'react-router-hash-link'
 import { useState } from 'react';
 
-import tocaya from '../../images/tocaya-logo.png'
+import tocaya from '../../images/tocaya-logo.webp'
 import DrawerComponent from '../DrawerComponent/DrawerComponent';
 
 

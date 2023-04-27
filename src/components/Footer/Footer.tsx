@@ -1,7 +1,7 @@
-import kofiLogo from '../../images/kofilogo.png'
-import behanceLogo from '../../images/behance.png'
-import instagramLogo from '../../images/instagram.png'
-import linkedinLogo from '../../images/linkedin.png'
+import kofiLogo from '../../images/kofilogo.webp'
+import behanceLogo from '../../images/behance.webp'
+import instagramLogo from '../../images/instagram.webp'
+import linkedinLogo from '../../images/linkedin.webp'
 
 const Footer = () => {
     const year:number = (new Date()).getFullYear(); 

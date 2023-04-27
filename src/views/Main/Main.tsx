@@ -3,7 +3,7 @@ import { useFetch } from '../../hooks/useFetch'
 import NavBar from '../../components/NavBar/NavBar'
 import Footer from '../../components/Footer/Footer'
 
-import kofiLogo from '../../images/kofilogo.png'
+import kofiLogo from '../../images/kofilogo.webp'
 
 const Main = () => {
     const {data, loading, error} = useFetch("https://tocaya-server-production.up.railway.app/profile")

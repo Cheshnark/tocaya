@@ -1,9 +1,9 @@
 import './Init.css'
 import { Link } from "react-router-dom"
 
-import tocaya from '../../images/tocaya-logo.png'
-import sobreMi from '../../images/sobre-mi.png'
-import gallery from '../../images/galeria.png'
+import tocaya from '../../images/tocaya-logo.webp'
+import sobreMi from '../../images/sobre-mi.webp'
+import gallery from '../../images/galeria.webp'
 
 const Init = () => {
     return (
