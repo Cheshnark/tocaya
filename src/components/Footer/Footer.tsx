@@ -67,7 +67,7 @@ const Footer = () => {
                             autoComplete="off"
                             className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
                     </div>
-                    <label htmlFor="contact-body" className='invisible absolute -left-96'>Cuerpo del mail</label>
+                    <label htmlFor="contact-body" className='absolute -left-96'>Cuerpo del mail</label>
                     <textarea 
                         name="mail-body" 
                         id="contact-body" 
