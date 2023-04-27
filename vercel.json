@@ -11,6 +11,10 @@
             "destination":"/"
         },
         {
+            "source":"/producto/:id", 
+            "destination":"/"
+        },
+        {
             "source":"/sobre-mi", 
             "destination":"/"
         },

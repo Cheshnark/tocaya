@@ -40,7 +40,7 @@ const Footer = () => {
                         <p>Si tienes alguna propuesta de trabajo, colaboración, comentario y/o salseo, por favor ponte en contacto conmigo, estaré encantada de atenderte. 
                             <br /><br />
                         </p>
-                        <p className="text-center text-red-400 hover:text-red-500 hover:scale-105 transition-all" >
+                        <p className="text-center text-red-500 hover:text-red-600 hover:scale-105 transition-all" >
                             <a href="mailto:TocayaVazquez@gmail.com">TocayaVazquez@gmail.com</a>
                         </p>
                     </div>
@@ -50,21 +50,24 @@ const Footer = () => {
                     method="POST" 
                     className="contact-form flex flex-col gap-4 w-8/12 mx-auto" >
                     <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
-                    <h4 className="text-center text-lg font-bold">¿Algo qué quieras decirme?</h4>
+                    <h3 className="text-center text-lg font-bold">¿Algo qué quieras decirme?</h3>
                     <div className="contact-form__user-info grid grid-cols-2 grid-rows-2 gap-y-4 items-center text-center">
-                        <label>Nombre: </label>
+                        <label htmlFor='name'>Nombre: </label>
                         <input 
                             type="text" 
                             name='nombre'
+                            id='name'
                             autoComplete="off" 
                             className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
-                        <label>Email: </label>
+                        <label htmlFor='email'>Email: </label>
                         <input 
                             type="text" 
                             name='email'
+                            id='email'
                             autoComplete="off"
                             className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
                     </div>
+                    <label htmlFor="body" className='hidden'>Cuerpo del mail</label>
                     <textarea 
                         name="mail-body" 
                         id="body" 
