@@ -87,7 +87,7 @@ const ProductForm = ({product}:Props) => {
             }
             <label 
                 className='bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105' >
-                    Sube 4 foto de tu mascota 
+                    Sube 4 fotos de tu mascota 
                     <i onClick={fileField} className="fa-solid fa-angle-down pl-4" />
             </label>
             {showFileField &&
@@ -109,15 +109,15 @@ const ProductForm = ({product}:Props) => {
                     accept="image/*"
                     className="w-10/12 mx-auto" />
             </div>}
-            <label htmlFor='email'>Email</label>
+            <label htmlFor='product-email'>Email</label>
             <input 
                 type="email" 
                 name='email' 
-                id='email' 
+                id='product-email' 
                 required 
                 autoComplete="off"
                 className="border-2 border-green-200 bg-green-50 rounded-lg focus:border-green-500 focus:outline-none"/>
-            <label>Comentarios</label>
+            <label htmlFor='coments'>Comentarios</label>
             <textarea name="comentarios" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50 rounded-lg focus:border-green-500 focus:outline-none"></textarea>
             <button 
                 type="submit" 

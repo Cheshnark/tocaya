@@ -40,7 +40,7 @@ const Footer = () => {
                         <p>Si tienes alguna propuesta de trabajo, colaboración, comentario y/o salseo, por favor ponte en contacto conmigo, estaré encantada de atenderte. 
                             <br /><br />
                         </p>
-                        <p className="text-center text-red-500 hover:text-red-600 hover:scale-105 transition-all" >
+                        <p className="text-center text-red-600 hover:text-red-700 hover:scale-105 transition-all" >
                             <a href="mailto:TocayaVazquez@gmail.com">TocayaVazquez@gmail.com</a>
                         </p>
                     </div>
@@ -59,18 +59,18 @@ const Footer = () => {
                             id='name'
                             autoComplete="off" 
                             className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
-                        <label htmlFor='email'>Email: </label>
+                        <label htmlFor='contact-email'>Email: </label>
                         <input 
                             type="text" 
                             name='email'
-                            id='email'
+                            id='contact-email'
                             autoComplete="off"
                             className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"/>
                     </div>
-                    <label htmlFor="body" className='hidden'>Cuerpo del mail</label>
+                    <label htmlFor="contact-body" className='hidden'>Cuerpo del mail</label>
                     <textarea 
                         name="mail-body" 
-                        id="body" 
+                        id="contact-body" 
                         cols={30} 
                         rows={5}
                         className="bg-green-100 border-2 border-green-300 rounded-lg focus:border-green-500 focus:outline-none"></textarea>

@@ -12,18 +12,10 @@ const DrawerComponent = () => {
                 </div>
                 <div className="drawer-comp__content">
                     <ul className='flex flex-col gap-2 p-4 '>
-                        <Link to='/sobre-mi' className='text-right px-4 py-2 text-green-400'>
-                            <li>Sobre mí</li>
-                        </Link>
-                        <Link to='/portfolio' className='text-right px-4 py-2 text-green-400'>
-                            <li>Trabajos</li>
-                        </Link>
-                        <Link to='/tienda' className='text-right px-4 py-2 text-green-400'>
-                            <li>Tienda</li>
-                        </Link>
-                        <Hash smooth to='#contact' className='text-right px-4 py-2 text-green-400'>
-                            <li>Contacto</li>
-                        </Hash>
+                        <li className='text-right px-4 py-2 text-green-400'><Link to='/sobre-mi' >Sobre mí</Link></li>
+                        <li className='text-right px-4 py-2 text-green-400'><Link to='/portfolio' >Trabajos</Link></li>
+                        <li className='text-right px-4 py-2 text-green-400'><Link to='/tienda' >Tienda</Link></li>
+                        <li className='text-right px-4 py-2 text-green-400'><Hash smooth to='#contact' >Contacto</Hash></li>
                     </ul>
                 </div>
             </div>
