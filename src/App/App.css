@@ -1,6 +1,7 @@
 @font-face {
 	font-family: brasley;
 	src: url('../fonts/brasley-medium.ttf');
+	font-display: swap;
   }
   
 
@@ -11,5 +12,5 @@
 }
 
 h1,h2,h3,p {
-  font-family: brasley;
+  font-family: brasley, sans-serif;
 }
