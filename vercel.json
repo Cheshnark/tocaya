@@ -25,6 +25,14 @@
         {
             "source":"/admin/login", 
             "destination":"/"
+        },
+        {
+            "source":"/gracias", 
+            "destination":"/"
+        },
+        {
+            "source":"*", 
+            "destination":"/"
         }
       ]
     }
