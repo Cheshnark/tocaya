@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const ThankYou = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
-          window.location.replace('http://localhost:5173/tienda');
+          window.location.replace('https://tocaya-vazquez.vercel.app/tienda');
         }, 3000);
       }, []);
 
