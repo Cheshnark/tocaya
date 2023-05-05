@@ -14,7 +14,7 @@ const Main = () => {
         <main className="main sm:mb-12">
             <section className="about-me h-full w-11/12 mx-auto" id='about-me'>
                 <div className="about-me__flex flex flex-col justify-center">
-                    <h2 className="text-5xl p-4 text-center">Sobre mí</h2>
+                    <h2 className="text-5xl p-4 text-center hidden">Sobre mí</h2>
                     {error && <div className="main-error">{error}</div> }
                     {loading && <div className="main-loading">Loading...</div> }
                     {data && 

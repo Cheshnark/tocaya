@@ -57,6 +57,7 @@ const ShopAdmin = () => {
     const [tempSize, setTempSize] = useState("")
     const [tempBackgroundName, setTempBackgroundName] = useState("")
     const [tempBackground, setTempBackground] = useState("")
+    const [tempFileField, setTempFileField] = useState("")
 
     const createProduct = async () => {
         const data = {productTitle:tempProductName}

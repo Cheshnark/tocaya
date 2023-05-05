@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface Image {
     destination: string;
@@ -29,7 +29,6 @@ interface Image {
 const ProductForm = ({product}:Props) => {
     const [color, setColor] = useState(product.backgroundColor.length > 0 && product.backgroundColor[0].hex)
     const [showWarning, setShowWarning] = useState(false)
-    const [showFileField, setShowFileField] = useState(false)
     
     const colorPick = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault()
@@ -46,14 +45,9 @@ const ProductForm = ({product}:Props) => {
         }
     }
 
-    const fileField = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        setShowFileField(!showFileField)
-    }
-
     return (
         <form 
-            action="https://formsubmit.co/4thstringinE@gmail.com" 
+            action="https://formsubmit.co/tocayavazquez@gmail.com" 
             method="POST"
             encType="multipart/form-data" 
             className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center sm:max-w-sm lg:max-w-md">
@@ -62,20 +56,26 @@ const ProductForm = ({product}:Props) => {
             <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
             <h3 className="mt-4 text-3xl">{product.productInnerTitle}</h3>
             <p className='text-justify'>{product.productInnerDescription}</p>
+            {product.size.length > 0 &&
+            <>
             <label htmlFor="size">Tamaño</label>
             <select name="tamaño" id="size" className="w-6/12 mx-auto rounded-lg bg-green-50">
-                {product.size.length > 0 &&
-                    product.size.map((size, i) => {
-                        return <option value={size} key={i} className='bg-green-50'>{size}</option>
+                {product.size.map((size, i) => {
+                    return <option value={size} key={i} className='bg-green-50'>{size}</option>
                 })}
             </select>
+            </>
+            }
+            {product.backgroundColor.length > 0 &&
+            <>
             <label htmlFor="color">Color del fondo</label>
-            <select name="color" id="color" className="w-6/12 mx-auto rounded-lg" style={{backgroundColor:`${color}`}} onChange={colorPick}>
-                {product.backgroundColor.length > 0 &&
-                    product.backgroundColor.map((bgColor, i) => {
-                        return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} key={i} >{bgColor.name}</option>
+            <select name="color" id="color" className="w-6/12 mx-auto rounded-lg text-slate-200" style={{backgroundColor:`${color}`}} onChange={colorPick}>
+                {product.backgroundColor.map((bgColor, i) => {
+                    return <option value={bgColor.hex} style={{backgroundColor: bgColor.hex}} key={i} >{bgColor.name}</option>
                 })}
             </select>
+            </>
+            }
             {showWarning &&
             <aside className='flex justify-center items-center gap-1 p-2 border-2 border-green-200 bg-green-50'>
                 <i className="fa-solid fa-triangle-exclamation text-2xl" />
@@ -85,30 +85,6 @@ const ProductForm = ({product}:Props) => {
                 </p>
             </aside>
             }
-            <label 
-                className='bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105' >
-                    Sube 4 fotos de tu mascota 
-                    <i onClick={fileField} className="fa-solid fa-angle-down pl-4" />
-            </label>
-            {showFileField &&
-            <div className="input-drawer flex flex-col justify-center gap-2">
-                <input type="file"  
-                    name="attachment-1" 
-                    accept="image/*"
-                    className="w-10/12 mx-auto" />
-                <input type="file"  
-                    name="attachment-2" 
-                    accept="image/*"
-                    className="w-10/12 mx-auto" />
-                <input type="file"  
-                    name="attachment-3"
-                    accept="image/*"
-                    className="w-10/12 mx-auto" />
-                <input type="file"  
-                    name="attachment-4"
-                    accept="image/*"
-                    className="w-10/12 mx-auto" />
-            </div>}
             <label htmlFor='product-email'>Email</label>
             <input 
                 type="email" 
@@ -121,7 +97,7 @@ const ProductForm = ({product}:Props) => {
             <textarea name="comentarios" id="coments" cols={25} rows={5} className="border-2 border-green-200 bg-green-50 rounded-lg focus:border-green-500 focus:outline-none"></textarea>
             <button 
                 type="submit" 
-                className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pedir perrete!</button>
+                className="w-6/12 mx-auto py-2 px-4 my-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">Pide el tuyo</button>
             </>
             }
         </form>

@@ -56,7 +56,7 @@ const Shop = () => {
                                 <p className="text-justify max-w-sm mx-auto">{product.productDescription}</p>
                                 <Link to={"/producto/" + product._id} className="w-6/12 my-8 self-center flex justify-center">
                                     <button className="py-2 px-4 bg-green-200 rounded-lg hover:bg-green-300 cursor-pointer hover:scale-105 transition-all">
-                                        Pide el tuyo!
+                                        Pide el tuyo
                                     </button>
                                 </Link>
                             </article>

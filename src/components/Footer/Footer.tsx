@@ -46,11 +46,11 @@ const Footer = () => {
                     </div>
                 </div>
                 <form 
-                    action="https://formsubmit.co/4thstringinE@gmail.com" 
+                    action="https://formsubmit.co/tocayavazquez@gmail.com" 
                     method="POST" 
                     className="contact-form flex flex-col gap-4 w-8/12 mx-auto" >
                     <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
-                    <h3 className="text-center text-lg font-bold">¿Algo qué quieras decirme?</h3>
+                    <h3 className="text-center text-lg font-bold">Si tienes algo que decir...</h3>
                     <div className="contact-form__user-info grid grid-cols-2 grid-rows-2 gap-y-4 items-center text-center">
                         <label htmlFor='name'>Nombre: </label>
                         <input 
