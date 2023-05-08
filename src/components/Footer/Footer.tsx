@@ -8,7 +8,6 @@ const Footer = () => {
 
     return (
         <footer className="footerh-full" id="contact">
-            <hr className="border-1 border-black"/>
             <h2 className="mt-8 text-center text-4xl font-bold" >Contacto</h2>
             <div className="contact-grid grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-7xl mx-auto">
                 <div className="contact-info w-10/12 mx-auto flex flex-col justify-center gap-8 text-justify">
@@ -50,7 +49,7 @@ const Footer = () => {
                     method="POST" 
                     className="contact-form flex flex-col gap-4 w-8/12 mx-auto" >
                     <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
-                    <h3 className="text-center text-lg font-bold">Si tienes algo que decir...</h3>
+                    <h3 className="text-center text-lg font-bold">Si tienes cualquier duda, escríbeme</h3>
                     <div className="contact-form__user-info grid grid-cols-2 grid-rows-2 gap-y-4 items-center text-center">
                         <label htmlFor='name'>Nombre: </label>
                         <input 

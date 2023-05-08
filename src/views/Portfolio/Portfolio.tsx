@@ -35,7 +35,7 @@ const Portfolio = () => {
         {loading && <div className="portfolio-loading">Loading...</div> }
         {data &&
         <main className="portfolio mb-8">
-            <h2 className="text-5xl p-4 text-center">Portfolio</h2>
+            <h2 className="text-5xl p-4 text-center hidden">Portfolio</h2>
             <header className="hidden md:flex justify-center gap-8 pb-4">
                 {data.map((section: Section, i:number) => {
                     return <h3 
@@ -45,7 +45,6 @@ const Portfolio = () => {
                             {section.name} </h3>
                 })}
             </header>
-            <hr className="hidden md:block mb-4 border-1 border-black"/>
             <div className="portfolio-small-screen md:hidden">
                 {data.map((section: Section) => {
                     return <PortfolioSection collection={section} key={section._id}/>

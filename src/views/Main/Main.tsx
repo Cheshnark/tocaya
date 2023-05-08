@@ -25,7 +25,6 @@ const Main = () => {
                         <div className="about-me-content w-10/12 mt-4 mb-6 mx-auto flex flex-col">
                             <h3 className='text-3xl text-center'>{data[0].name}</h3>
                             <p className='mt-4 text-justify'>{data[0].description}</p>
-                            <a href="https://ko-fi.com/tocayavazquez"><img src={kofiLogo} alt="Kofi logo" className='w-12 mx-auto mt-4 hover:scale-105 transition-all'/></a>
                         </div>
                     </div>
                     }
