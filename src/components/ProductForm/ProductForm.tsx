@@ -53,7 +53,7 @@ const ProductForm = ({product}:Props) => {
             className="flex flex-col justify-center gap-4 w-10/12 mx-auto my-4 text-center sm:max-w-sm lg:max-w-md">
             {product && 
             <>
-            <input type="hidden" name="_next" value="http://localhost:5173/gracias"/>
+            <input type="hidden" name="_next" value="https://www.tocayavazquez.com/gracias"/>
             <h3 className="mt-4 text-3xl">{product.productInnerTitle}</h3>
             <p className='text-justify'>{product.productInnerDescription}</p>
             {product.size.length > 0 &&
