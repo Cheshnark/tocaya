@@ -43,7 +43,6 @@ const PortfolioSection = ({collection}:Props) => {
     return (
         <section className="children">
             <h3 className='md:hidden mt-4 text-4xl text-center'>{collection.name}</h3>
-            <hr className="md:hidden mb-4 border-1 border-black"/>
             <figure className={`personal-images-container grid grid-flow-row-dense ${colNum} ${xlColNum} justify-center`}>
                 {collection.images.map((img,i) => {
                     return(
