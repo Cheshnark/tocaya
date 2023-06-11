@@ -30,7 +30,7 @@ function App() {
             <Route path="/" element={<Init />} />
             <Route path='/sobre-mi' element={<Main />} />
             <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/tienda" element={<Shop />} />
+            {/* <Route path="/tienda" element={<Shop />} /> */}
             <Route path="/producto/:id" element={<Product />} />
             <Route path="/admin" element={ admin ? <Admin /> : <Navigate to="/admin/login" />} />
             <Route path="/admin/login" element={ !admin ? <Login /> : <Navigate to="/admin" />} />
