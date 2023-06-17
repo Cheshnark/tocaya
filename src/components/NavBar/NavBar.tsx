@@ -26,7 +26,7 @@ const NavBar = () => {
                     </Link>
                 </figure>
                 <ul className="navbar-content-2 flex gap-4">
-                    <li className='mx-2 self-center hover:cursor-pointer hover:text-red-700 hover:scale-105 transition-all text-xl'><a href='https://ko-fi.com/tocayavazquez' >Tienda</a></li>
+                    <li className='mx-2 self-center hover:cursor-pointer hover:text-red-700 hover:scale-105 transition-all text-xl'><a href='https://ko-fi.com/tocayavazquez/shop' >Tienda</a></li>
                     <li className='mx-2 self-center hover:cursor-pointer hover:text-red-700 hover:scale-105 transition-all text-xl'><Hash smooth to='#contact' >Contacto</Hash></li>  
                 </ul>
             </div>

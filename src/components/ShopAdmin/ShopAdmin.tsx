@@ -145,7 +145,6 @@ const ShopAdmin = () => {
         })
 
         const json = await response.json()
-        console.log(json);
         
 
         if(!response.ok){

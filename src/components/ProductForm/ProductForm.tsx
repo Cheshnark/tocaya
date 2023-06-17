@@ -33,9 +33,7 @@ const ProductForm = ({product}:Props) => {
     const colorPick = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault()
 
-        setColor(e.target.value)
-        console.log(e.target.name);
-        
+        setColor(e.target.value)        
         
         if(!showWarning){
             setShowWarning(true)

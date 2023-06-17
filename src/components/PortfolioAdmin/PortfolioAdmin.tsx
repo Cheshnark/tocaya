@@ -86,9 +86,8 @@ const PortfolioAdmin = () => {
         formData.append('_id', sectionId)
         if(tempPicture){
             formData.append('portfolioImage', tempPicture)
-        }
 
-        const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section/image', {
+            const response = await fetch('https://tocaya-server-production.up.railway.app/portfolio/section/image', {
             method: 'PATCH',
             body: formData,
             headers: {'Authorization': `Bearer ${admin.token}`}
@@ -101,8 +100,10 @@ const PortfolioAdmin = () => {
         }else if(response.ok){
             if(setHasChanged)setHasChanged(!hasChanged)
             setShowImageInput(false)
+            setTempPicture(undefined)
             console.log('Picture added correctly', json.profile)
         }
+        }        
     }
 
     const deletePicture = async (pictureId:string) => {
