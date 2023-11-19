@@ -29,10 +29,10 @@
     "autoprefixer": "^10.4.14",
     "jest": "^29.5.0",
     "jsdom": "^22.0.0",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.31",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4",
-    "vite": "^4.3.7",
+    "vite": "^4.3.9",
     "vitest": "^0.31.0"
   }
 }
